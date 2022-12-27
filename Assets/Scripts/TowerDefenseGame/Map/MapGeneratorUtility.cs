@@ -1,4 +1,5 @@
 ﻿using System;
+using TowerDefenseGame.Map.ScriptableObjects;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -10,8 +11,10 @@ namespace TowerDefenseGame.Map
 
         public static Grid<Block> GenerateMap(MapSo map)
         {
-            var mapWidth = map.MapTex.width;
-            var mapHeight = map.MapTex.height;
+            var mapConfig = map.GetMapConfigSo();
+            var mapTex = mapConfig.GetMapTexture2D();
+            var mapWidth = mapTex.width;
+            var mapHeight = mapTex.height;
 
             var grid = new Grid<Block>(mapWidth, mapHeight, GridCellSize);
 
@@ -19,8 +22,10 @@ namespace TowerDefenseGame.Map
             {
                 for (var y = 0; y < mapHeight; y++)
                 {
-                    var color = map.MapTex.GetPixel(x, y);
+                    var color = mapTex.GetPixel(x, y);
                     var block = Object.Instantiate(map.GetBlockPrefab(color));
+                    block.SetBlock(x, y);
+
                     var posX = x * GridCellSize;
                     var posZ = y * GridCellSize;
                     block.transform.position = new Vector3(posX, 0, posZ);

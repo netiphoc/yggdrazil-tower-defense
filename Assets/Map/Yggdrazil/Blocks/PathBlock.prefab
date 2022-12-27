@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7962314404600693495}
   - component: {fileID: 8591816695035728929}
   m_Layer: 0
-  m_Name: TowerBlock
+  m_Name: PathBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -348,7 +348,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d107505de65d2c8469105fff3f7ef173, type: 2}
+  - {fileID: 2100000, guid: e48940039130929408da2253a66115bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

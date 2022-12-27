@@ -17,5 +17,11 @@ namespace Utilities
             if (!EnableGameLog) return;
             Debug.LogError($"[{obj.GetType().FullName}] <color=red>{log}</color>");
         }
+
+        public static void DebugAssert(this Object obj)
+        {
+            if (!EnableGameLog) return;
+            Debug.Assert(obj != null);
+        }
     }
 }

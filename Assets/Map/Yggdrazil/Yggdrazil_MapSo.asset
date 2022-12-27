@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e72e54a37c4e9cb6e2abdac41fe090, type: 3}
   m_Name: Yggdrazil_MapSo
   m_EditorClassIdentifier: 
-  mapTexture2D: {fileID: 2800000, guid: d9ce743a29fa9f84aac176f23a5cd80f, type: 3}
+  mapConfigSo: {fileID: 11400000, guid: 9af28085f56576445906fd83676a43f1, type: 2}
   defaultBlock: {fileID: 8591816695035728929, guid: ae56298be022e1643ba0d8416376a3d4,
     type: 3}
   blockPrefabs:
-  - hexColorCode: '#10ff10'
+  - blockTypeSo: {fileID: 11400000, guid: ac87aa7d6017a394198b7c729c2281aa, type: 2}
     blockPrefab: {fileID: 8591816695035728929, guid: db44dfd94024abf45b585a572920185d,
+      type: 3}
+  - blockTypeSo: {fileID: 11400000, guid: 72924fa2d11ed4641b1975a8ee2ca762, type: 2}
+    blockPrefab: {fileID: 8591816695035728929, guid: 6a97dd9cf0cf1364a879ad475b017b37,
       type: 3}
