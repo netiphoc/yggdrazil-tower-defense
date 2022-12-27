@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TowerDefenseGame.Waypoint;
+using UnityEngine;
 
 namespace TowerDefenseGame.Map.ScriptableObjects
 {
@@ -21,6 +22,11 @@ namespace TowerDefenseGame.Map.ScriptableObjects
             return mapTexture2D;
         }
 
-        [SerializeField] private Vector2[] paths;
+        [SerializeField] private WaypointPath[] paths;
+
+        public WaypointPath[] GetPaths()
+        {
+            return paths;
+        }
     }
 }

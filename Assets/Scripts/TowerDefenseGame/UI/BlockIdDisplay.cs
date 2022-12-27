@@ -1,37 +1,26 @@
-﻿using System;
-using TowerDefenseGame.UI;
-using UnityEngine;
+﻿using UnityEngine;
 using Utilities;
 
-namespace TowerDefenseGame.Map
+namespace TowerDefenseGame.UI
 {
     public class BlockIdDisplay : MonoBehaviour
     {
-        [SerializeField] private MapManager mapManager;
+        [SerializeField] private GameManager gameManager;
         [SerializeField] private UIBlockID uiBlockIDPrefab;
 
         private void Awake()
         {
-            mapManager.DebugAssert();
+            gameManager.DebugAssert();
         }
 
-        private void OnEnable()
+        private void Start()
         {
-            mapManager.onGridCreated.AddListener(OnGridCreated);
+            InitializeGridDisplay();
         }
 
-        private void OnDisable()
+        private void InitializeGridDisplay()
         {
-            mapManager.onGridCreated.RemoveListener(OnGridCreated);
-        }
-
-        private void OnGridCreated(Grid<Block> grid)
-        {
-            InitializeGridDisplay(grid);
-        }
-
-        private void InitializeGridDisplay(Grid<Block> grid)
-        {
+            var grid = gameManager.MapManager.Grid;
             for (var x = 0; x < grid.Width; x++)
             {
                 for (var y = 0; y < grid.Height; y++)

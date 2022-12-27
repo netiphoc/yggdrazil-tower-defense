@@ -1,26 +1,15 @@
 ﻿using System;
 using TowerDefenseGame.Map.ScriptableObjects;
-using UnityEngine;
-using UnityEngine.Events;
 
 namespace TowerDefenseGame.Map
 {
-    public class MapManager : MonoBehaviour
+    public class MapManager
     {
-        public UnityEvent<Grid<Block>> onGridCreated;
+        public Grid<Block> Grid { get; }
 
-        [Header("Map")] [SerializeField] private MapSo mapSo;
-        public Grid<Block> Grid { get; private set; }
-
-        private void Awake()
-        {
-            InitializeGrid();
-        }
-
-        private void InitializeGrid()
+        public MapManager(MapSo mapSo)
         {
             Grid = MapGeneratorUtility.GenerateMap(mapSo);
-            onGridCreated?.Invoke(Grid);
         }
     }
 }

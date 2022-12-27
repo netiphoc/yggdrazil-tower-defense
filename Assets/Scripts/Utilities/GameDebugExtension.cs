@@ -6,13 +6,13 @@ namespace Utilities
     {
         public static bool EnableGameLog = true;
 
-        public static void Log(this Object obj, string log)
+        public static void Log(this object obj, string log)
         {
             if (!EnableGameLog) return;
             Debug.Log($"[{obj.GetType().FullName}] <color=yellow>{log}</color>");
         }
 
-        public static void ErrorLog(this Object obj, string log)
+        public static void ErrorLog(this object obj, string log)
         {
             if (!EnableGameLog) return;
             Debug.LogError($"[{obj.GetType().FullName}] <color=red>{log}</color>");
