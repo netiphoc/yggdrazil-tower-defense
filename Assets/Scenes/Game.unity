@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 1896572746}
   - component: {fileID: 1896572745}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MapManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,11 +362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 653f212d12174d4fb30060a1d5e39190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridWidth: 0
-  gridHeight: 0
-  gridCellSize: 0
-  blockPrefabSo: {fileID: 0}
-  color: {r: 1, g: 0, b: 0, a: 1}
+  mapSo: {fileID: 11400000, guid: 8e3398928d528ca4a8103d8d3dc9baa7, type: 2}
+  blockPrefabSo: {fileID: 11400000, guid: ac3270c20ff2c9947883a1f53f6357da, type: 2}
 --- !u!4 &1896572746
 Transform:
   m_ObjectHideFlags: 0

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4e72e54a37c4e9cb6e2abdac41fe090, type: 3}
+  m_Name: Yggdrazil_MapSo
+  m_EditorClassIdentifier: 
+  mapTexture2D: {fileID: 2800000, guid: d9ce743a29fa9f84aac176f23a5cd80f, type: 3}
+  defaultBlock: {fileID: 8591816695035728929, guid: ae56298be022e1643ba0d8416376a3d4,
+    type: 3}
+  blockPrefabs:
+  - hexColorCode: '#10ff10'
+    blockPrefab: {fileID: 8591816695035728929, guid: db44dfd94024abf45b585a572920185d,
+      type: 3}
