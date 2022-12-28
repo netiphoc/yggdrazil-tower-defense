@@ -1,5 +1,4 @@
-﻿using System;
-using TowerDefenseGame.GameState;
+﻿using TowerDefenseGame.GameState;
 using UnityEngine;
 using Utilities;
 
@@ -8,6 +7,11 @@ namespace TowerDefenseGame
     public class GameController : MonoBehaviour
     {
         [SerializeField] private GameManager gameManager;
+
+        [Header("Game Config")] [SerializeField]
+        private int enemyPerSpawn = 10;
+
+        [SerializeField] private float spawnDelay = 60f;
         public GameManager GameManager => gameManager;
 
         private State _gameState;
@@ -19,7 +23,7 @@ namespace TowerDefenseGame
 
         private void Start()
         {
-            SetState(new BeginState(this));
+            SetState(new InGameState(this, enemyPerSpawn, spawnDelay));
         }
 
         private void Update()

@@ -45,9 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d5621bac2f4403a13ee7c6d25da3c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onBlockChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &8558868957869099313
 GameObject:
   m_ObjectHideFlags: 0

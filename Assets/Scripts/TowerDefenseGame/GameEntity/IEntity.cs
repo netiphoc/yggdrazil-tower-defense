@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameEntity
+namespace TowerDefenseGame.GameEntity
 {
     public interface IEntity
     {
