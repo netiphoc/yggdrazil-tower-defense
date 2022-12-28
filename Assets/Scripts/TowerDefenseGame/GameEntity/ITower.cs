@@ -24,6 +24,8 @@ namespace TowerDefenseGame.GameEntity
 
     public abstract class AbstractTower : DamageAble, ITower
     {
+        private const float RangeMultiplier = 1.5f;
+
         [Header("Tower Config")] [SerializeField]
         private EntityTypeSo targetEntityType;
 
@@ -40,7 +42,7 @@ namespace TowerDefenseGame.GameEntity
 
         public float GetFireRate()
         {
-            return fireRate;
+            return fireRate * RangeMultiplier;
         }
 
         public void SetFireRate(float towerFireRate)
@@ -75,7 +77,7 @@ namespace TowerDefenseGame.GameEntity
 
         public float GetFireRange()
         {
-            return fireRange;
+            return fireRange * RangeMultiplier;
         }
 
         public void SetFireRange(float towerFireRange)
@@ -104,7 +106,7 @@ namespace TowerDefenseGame.GameEntity
 
         protected bool InFireRange(Monster monster)
         {
-            return GetDistance(monster) < fireRange;
+            return GetDistance(monster) < GetFireRange();
         }
 
         protected Monster GetClosestMonster(List<Monster> monsters, bool closest = true)
@@ -162,7 +164,7 @@ namespace TowerDefenseGame.GameEntity
 
         protected void SetFireDelay()
         {
-            _currentFireDelay = Time.time + fireRate;
+            _currentFireDelay = Time.time + GetFireRate();
         }
 
         protected void LookAtTarget(Monster monster)
@@ -180,7 +182,7 @@ namespace TowerDefenseGame.GameEntity
             if (isTargetType)
             {
                 modifiedDamage *= damageMultiplier;
-                this.Log($"+{(damageMultiplier - 1f) * 100f}% damage");
+                this.Log($"+{(damageMultiplier - 1f) * 100f}% | {modifiedDamage:F0} damage");
             }
 
             monster.Damage(modifiedDamage);

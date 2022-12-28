@@ -287,7 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1896572747}
   enemyPerSpawn: 10
-  spawnDelay: 15
+  spawnDelay: 60
   difficultyIncreasePerWave: 0.5
 --- !u!1 &1225162455
 GameObject:

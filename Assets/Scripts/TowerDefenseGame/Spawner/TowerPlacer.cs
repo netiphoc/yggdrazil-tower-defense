@@ -40,6 +40,7 @@ namespace TowerDefenseGame.Spawner
                 var block = GetMouseHoverBlock();
                 if (block)
                 {
+                    TryRemovePlacedObject(block);
                     TryPlaceTower(block);
                 }
             }

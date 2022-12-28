@@ -16,6 +16,7 @@ namespace TowerDefenseGame.GameEntity
     public class LivingEntity : DamageAble, ILivingEntity
     {
         private const float ReachedDist = 0.05f;
+        private const float SpeedMultiplier = 0.5f;
 
         [SerializeField] private float initSpeed;
         private float _speed;
@@ -32,7 +33,7 @@ namespace TowerDefenseGame.GameEntity
 
         public float GetSpeed()
         {
-            return _speed;
+            return _speed * SpeedMultiplier;
         }
 
         public float GetBaseSpeed()

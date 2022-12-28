@@ -8,6 +8,7 @@ namespace TowerDefenseGame.GameEntity
     {
         void Damage(float amount);
         float GetHealth();
+        float GetBaseHealth();
         void SetHealth(float health);
     }
 
@@ -27,9 +28,9 @@ namespace TowerDefenseGame.GameEntity
         public void Damage(float amount)
         {
             if (amount < 0f) return;
-            _health -= amount;
-            this.Log($"Damage {name}: {amount} | {_health}/{initHealth}");
-            if (_health > 0f) return;
+            SetHealth(GetHealth() - amount);
+            this.Log($"Damage {name}: {amount} | {GetHealth():F0}/{GetBaseHealth()}");
+            if (GetHealth() > 0f) return;
             Dead = true;
             onEntityDead?.Invoke(this);
             this.Log($"{name} is dead!");
@@ -40,9 +41,14 @@ namespace TowerDefenseGame.GameEntity
             return _health;
         }
 
+        public float GetBaseHealth()
+        {
+            return initHealth;
+        }
+
         public void SetHealth(float hp)
         {
-            _health = hp;
+            _health = Mathf.Clamp(hp, 0f, GetBaseHealth());
         }
 
         public override void ResetEntity()
