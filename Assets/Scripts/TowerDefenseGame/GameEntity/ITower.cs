@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TowerDefenseGame.GameEntity.ScriptableObjects;
 using Unity.Mathematics;
 using UnityEngine;
@@ -98,7 +99,7 @@ namespace TowerDefenseGame.GameEntity
 
         protected float GetDistance(Monster monster)
         {
-            return math.distancesq(transform.position, monster.transform.position);
+            return Vector3.Distance(transform.position, monster.transform.position);
         }
 
         public bool InFireRange(Monster monster)
