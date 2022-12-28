@@ -12,6 +12,8 @@ namespace TowerDefenseGame
         private int enemyPerSpawn = 10;
 
         [SerializeField] private float spawnDelay = 60f;
+        [SerializeField] private float difficultyIncreasePerWave = 0.5f;
+
         public GameManager GameManager => gameManager;
         public float DifficultPercent { get; private set; }
 
@@ -24,7 +26,7 @@ namespace TowerDefenseGame
 
         private void Start()
         {
-            SetState(new InGameState(this, enemyPerSpawn, spawnDelay));
+            SetState(new InGameState(this, enemyPerSpawn, spawnDelay, difficultyIncreasePerWave));
         }
 
         private void Update()
@@ -46,7 +48,7 @@ namespace TowerDefenseGame
 
         public void InCreaseDifficulty(float percent)
         {
-            DifficultPercent *= percent;
+            DifficultPercent += percent;
         }
     }
 }

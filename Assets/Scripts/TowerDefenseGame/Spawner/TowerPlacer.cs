@@ -56,6 +56,7 @@ namespace TowerDefenseGame.Spawner
 
         private void TryPlaceTower(Block block)
         {
+            if (block is not TowerBlock) return;
             if (block.PlacedObject) return;
             var towerType = gameManager.TowerSpawner.GetTowers()[_currentTowerTypeIndex];
             var tower = gameManager.TowerSpawner.SpawnEntityType(towerType, block);
@@ -65,6 +66,7 @@ namespace TowerDefenseGame.Spawner
 
         private void TryRemovePlacedObject(Block block)
         {
+            if (block is not TowerBlock) return;
             if (!block.PlacedObject) return;
             gameManager.TowerSpawner.DeSpawn(block.PlacedObject.GetComponent<AbstractTower>());
             block.PlacedObject = null;
