@@ -3,16 +3,16 @@ using TowerDefenseGame.GameEntity;
 
 namespace TowerDefenseGame.Spawner
 {
-    public class EnemySpawner
+    public class MonsterSpawner
     {
         private readonly MonsterPooling _monsterPooling;
 
         private readonly List<Monster> _spawnedMonsters;
 
-        public EnemySpawner(EnemyPrefabSo enemyPrefabSo)
+        public MonsterSpawner(MonsterPrefabSo monsterPrefabSo)
         {
             _spawnedMonsters = new List<Monster>();
-            _monsterPooling = new MonsterPooling(enemyPrefabSo.Monsters);
+            _monsterPooling = new MonsterPooling(monsterPrefabSo.Monsters);
         }
 
         public Monster SpawnRandomMonster()

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TowerDefenseGame.GameEntity.ScriptableObjects;
+using UnityEngine;
 
 namespace TowerDefenseGame.GameEntity
 {
@@ -13,10 +14,15 @@ namespace TowerDefenseGame.GameEntity
         void SetMaxDamage(float maxDamage);
         float GetFireRange();
         void SetFireRange(float fireRange);
+
+        EntityTypeSo GetTargetEntityType();
     }
 
     public abstract class AbstractTower : DamageAble, ITower
     {
+        [Header("Tower Config")] [SerializeField]
+        private EntityTypeSo targetEntityType;
+
         [SerializeField] private float fireRate;
         [SerializeField] private float minDamage;
         [SerializeField] private float maxDamage;
@@ -65,6 +71,11 @@ namespace TowerDefenseGame.GameEntity
         public void SetFireRange(float towerFireRange)
         {
             fireRange = towerFireRange;
+        }
+
+        public EntityTypeSo GetTargetEntityType()
+        {
+            return targetEntityType;
         }
     }
 }

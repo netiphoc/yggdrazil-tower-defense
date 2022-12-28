@@ -29,13 +29,13 @@ namespace TowerDefenseGame.GameState
 
         private void UpdateMonster()
         {
-            var spawnedMonster = GameManager.EnemySpawner.GetSpawnedMonster();
+            var spawnedMonster = GameManager.MonsterSpawner.GetSpawnedMonster();
             for (var i = 0; i < spawnedMonster.Count; i++)
             {
                 var monster = spawnedMonster[i];
                 if (monster.IsDestinationReached())
                 {
-                    GameManager.EnemySpawner.DeSpawn(monster);
+                    GameManager.MonsterSpawner.DeSpawn(monster);
                     continue;
                 }
 
@@ -60,7 +60,7 @@ namespace TowerDefenseGame.GameState
             var waypointPath = GameManager.WaypointManager.WaypointPaths[0];
             for (var i = 0; i < SpawnCount; i++)
             {
-                var monster = GameManager.EnemySpawner.SpawnRandomMonster();
+                var monster = GameManager.MonsterSpawner.SpawnRandomMonster();
                 monster.SetPath(waypointPath.path);
             }
         }

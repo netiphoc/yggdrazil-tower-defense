@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32cf20a95b5b40c48a188185a93ac91e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityTypeSo: {fileID: 11400000, guid: c95faac63243e6148a0d43ec633c968e, type: 2}
   onEntityDead:
     m_PersistentCalls:
       m_Calls: []

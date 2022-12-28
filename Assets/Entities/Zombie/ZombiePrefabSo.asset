@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07174c66adaf4a9885efd1488b02fa4b, type: 3}
-  m_Name: EnemyPrefabSo
+  m_Name: ZombiePrefabSo
   m_EditorClassIdentifier: 
   monsters:
   - {fileID: -7184736325635988968, guid: eff235e8cb16c584b87583729920a12f, type: 3}

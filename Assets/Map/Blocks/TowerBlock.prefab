@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7962314404600693495}
   - component: {fileID: 8591816695035728929}
+  - component: {fileID: 2425526866765839750}
   m_Layer: 0
   m_Name: TowerBlock
   m_TagString: Untagged
@@ -45,9 +46,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d5621bac2f4403a13ee7c6d25da3c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onBlockChanged:
-    m_PersistentCalls:
-      m_Calls: []
+--- !u!65 &2425526866765839750
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825185034339621045}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8558868957869099313
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +414,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30

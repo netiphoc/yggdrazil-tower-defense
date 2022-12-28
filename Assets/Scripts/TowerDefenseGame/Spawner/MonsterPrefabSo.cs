@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace TowerDefenseGame.Spawner
 {
-    [CreateAssetMenu(fileName = "New " + nameof(EnemyPrefabSo), menuName = "Tower Defense/" + nameof(EnemyPrefabSo),
+    [CreateAssetMenu(fileName = "New " + nameof(MonsterPrefabSo), menuName = "Tower Defense/" + nameof(MonsterPrefabSo),
         order = 0)]
-    public class EnemyPrefabSo : ScriptableObject
+    public class MonsterPrefabSo : ScriptableObject
     {
         [SerializeField] private Monster[] monsters;
         public Monster[] Monsters => monsters;

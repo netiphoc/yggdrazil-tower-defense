@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a9a9abe5e1410fb0764a82dcebfb04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityTypeSo: {fileID: 11400000, guid: 7913ddeb60489494b958b731ba0c7ce5, type: 2}
   onEntityDead:
     m_PersistentCalls:
       m_Calls: []
@@ -108,3 +109,4 @@ MonoBehaviour:
   minDamage: 3
   maxDamage: 3
   fireRange: 1
+  targetEntityType: {fileID: 11400000, guid: e93d40db7acb7264d94aca87974968ed, type: 2}
