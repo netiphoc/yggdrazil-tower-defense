@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TowerDefenseGame.GameEntity.ScriptableObjects;
 using Unity.Mathematics;
 using UnityEngine;
@@ -28,11 +27,12 @@ namespace TowerDefenseGame.GameEntity
         [Header("Tower Config")] [SerializeField]
         private EntityTypeSo targetEntityType;
 
-        [SerializeField] private float fireRate;
-        [SerializeField] private float minDamage;
-        [SerializeField] private float maxDamage;
+        [Space] [SerializeField] private float fireRate;
         [SerializeField] private float fireRange;
-        [SerializeField] private float lookTargetSpeed;
+
+        [Space] [SerializeField] private float minDamage;
+        [SerializeField] private float maxDamage;
+        [Space] [SerializeField] private float lookTargetSpeed;
         [SerializeField] private float damageMultiplier = 1.5f;
 
         public Monster CurrentTarget { get; set; }
@@ -102,7 +102,7 @@ namespace TowerDefenseGame.GameEntity
             return Vector3.Distance(transform.position, monster.transform.position);
         }
 
-        public bool InFireRange(Monster monster)
+        protected bool InFireRange(Monster monster)
         {
             return GetDistance(monster) < fireRange;
         }

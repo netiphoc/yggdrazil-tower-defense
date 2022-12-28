@@ -31,8 +31,8 @@ namespace TowerDefenseGame.GameEntity
             this.Log($"Damage {name}: {amount} | {_health}/{initHealth}");
             if (_health > 0f) return;
             Dead = true;
-            this.Log($"{name} is dead!");
             onEntityDead?.Invoke(this);
+            this.Log($"{name} is dead!");
         }
 
         public float GetHealth()

@@ -22,6 +22,7 @@ namespace TowerDefenseGame.GameEntity
             if (!InFireRange(targetMonster)) return;
             if (!CanFire()) return;
             SetFireDelay();
+
             DoAreaDamage(monsters);
             this.Log($"{name} Fire!");
         }
