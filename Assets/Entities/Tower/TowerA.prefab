@@ -104,9 +104,11 @@ MonoBehaviour:
   onEntityDead:
     m_PersistentCalls:
       m_Calls: []
-  health: 100
+  initHealth: 100
+  targetEntityType: {fileID: 11400000, guid: e93d40db7acb7264d94aca87974968ed, type: 2}
   fireRate: 0.5
   minDamage: 3
   maxDamage: 3
   fireRange: 1
-  targetEntityType: {fileID: 11400000, guid: e93d40db7acb7264d94aca87974968ed, type: 2}
+  lookTargetSpeed: 10
+  damageMultiplier: 1.5

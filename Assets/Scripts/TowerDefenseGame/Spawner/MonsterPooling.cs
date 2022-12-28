@@ -22,6 +22,7 @@ namespace TowerDefenseGame.Spawner
             foreach (var spawnedMonster in _monsterPool)
             {
                 if (spawnedMonster.gameObject.activeSelf) continue;
+                spawnedMonster.ResetEntity();
                 spawnedMonster.gameObject.SetActive(true);
                 return spawnedMonster;
             }

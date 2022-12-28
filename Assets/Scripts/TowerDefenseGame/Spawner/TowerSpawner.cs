@@ -10,8 +10,11 @@ namespace TowerDefenseGame.Spawner
     {
         private readonly Dictionary<EntityTypeSo, TowerPooling> _prefabPool;
 
+        private readonly List<AbstractTower> _spawnedTowers;
+
         public TowerSpawner(TowerPrefabSo towerPrefabSo)
         {
+            _spawnedTowers = new List<AbstractTower>();
             _prefabPool = new Dictionary<EntityTypeSo, TowerPooling>();
 
             foreach (var towerPrefab in towerPrefabSo.Towers)
@@ -26,11 +29,18 @@ namespace TowerDefenseGame.Spawner
             if (!_prefabPool.ContainsKey(entityType)) return null;
             var tower = _prefabPool[entityType].Request();
             tower.transform.position = block.GetWorldPosition();
+            _spawnedTowers.Add(tower);
             return tower;
+        }
+
+        public List<AbstractTower> GetSpawnedTowers()
+        {
+            return _spawnedTowers;
         }
 
         public void DeSpawn(AbstractTower tower)
         {
+            _spawnedTowers.Remove(tower);
             _prefabPool[tower.GetEntityType()].Return(tower);
         }
 

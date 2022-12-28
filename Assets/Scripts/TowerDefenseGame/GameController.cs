@@ -13,6 +13,7 @@ namespace TowerDefenseGame
 
         [SerializeField] private float spawnDelay = 60f;
         public GameManager GameManager => gameManager;
+        public float DifficultPercent { get; private set; }
 
         private State _gameState;
 
@@ -41,6 +42,11 @@ namespace TowerDefenseGame
             _gameState?.OnExit();
             _gameState = gameState;
             _gameState.OnEnter();
+        }
+
+        public void InCreaseDifficulty(float percent)
+        {
+            DifficultPercent *= percent;
         }
     }
 }

@@ -18,14 +18,17 @@ namespace TowerDefenseGame.GameState
         public override void OnUpdate()
         {
             base.OnUpdate();
-            UpdateSpawner();
+            UpdateMonsterSpawner();
         }
 
         public override void OnFixedUpdate()
         {
             base.OnFixedUpdate();
             UpdateMonster();
+            UpdateTower();
         }
+
+        #region Monster
 
         private void UpdateMonster()
         {
@@ -33,7 +36,9 @@ namespace TowerDefenseGame.GameState
             for (var i = 0; i < spawnedMonster.Count; i++)
             {
                 var monster = spawnedMonster[i];
-                if (monster.IsDestinationReached())
+
+                if (monster.Dead ||
+                    monster.IsDestinationReached())
                 {
                     GameManager.MonsterSpawner.DeSpawn(monster);
                     continue;
@@ -43,7 +48,7 @@ namespace TowerDefenseGame.GameState
             }
         }
 
-        private void UpdateSpawner()
+        private void UpdateMonsterSpawner()
         {
             if (_currentDelay > 0f)
             {
@@ -64,5 +69,19 @@ namespace TowerDefenseGame.GameState
                 monster.SetPath(waypointPath.path);
             }
         }
+
+        #endregion
+
+        #region Tower
+
+        private void UpdateTower()
+        {
+            foreach (var tower in GameManager.TowerSpawner.GetSpawnedTowers())
+            {
+                tower.TryAttackTarget(GameManager.MonsterSpawner.GetSpawnedMonster());
+            }
+        }
+
+        #endregion
     }
 }

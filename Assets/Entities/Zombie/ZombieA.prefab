@@ -104,5 +104,5 @@ MonoBehaviour:
   onEntityDead:
     m_PersistentCalls:
       m_Calls: []
-  health: 30
-  speed: 5
+  initHealth: 30
+  initSpeed: 5

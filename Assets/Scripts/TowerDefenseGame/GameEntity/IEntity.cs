@@ -12,9 +12,18 @@ namespace TowerDefenseGame.GameEntity
     {
         [SerializeField] private EntityTypeSo entityTypeSo;
 
+        protected virtual void Awake()
+        {
+        }
+
         public EntityTypeSo GetEntityType()
         {
             return entityTypeSo;
+        }
+
+        public virtual void ResetEntity()
+        {
+            
         }
     }
 }
