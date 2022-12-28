@@ -28,7 +28,7 @@ namespace TowerDefenseGame.GameEntity
         {
             if (amount < 0f) return;
             _health -= amount;
-            this.Log($"Damage {name}: {amount}");
+            this.Log($"Damage {name}: {amount} | {_health}/{initHealth}");
             if (_health > 0f) return;
             Dead = true;
             this.Log($"{name} is dead!");

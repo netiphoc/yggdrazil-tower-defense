@@ -76,7 +76,7 @@ namespace TowerDefenseGame.GameEntity
 
         private void MoveTo(Vector3 targetPos)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, _speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, GetSpeed() * Time.deltaTime);
         }
 
         private bool IsPositionReached(Vector3 pos)

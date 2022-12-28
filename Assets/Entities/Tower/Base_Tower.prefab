@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5967466312934442154}
   m_Layer: 0
-  m_Name: _TowerBase
+  m_Name: Base_Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

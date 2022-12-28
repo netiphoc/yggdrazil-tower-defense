@@ -6,8 +6,8 @@ namespace TowerDefenseGame.GameEntity
 {
     public class TowerC : AbstractTower
     {
-        [Header("Special Ammo")]
-        [SerializeField] private float enemySpeedDecrease = 0.35f;
+        [Header("Special Ammo")] [SerializeField]
+        private float enemySpeedDecrease = 0.35f;
 
         /// <summary>
         /// Target closest enemy

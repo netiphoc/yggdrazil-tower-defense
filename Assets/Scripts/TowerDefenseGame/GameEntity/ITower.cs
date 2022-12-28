@@ -34,6 +34,7 @@ namespace TowerDefenseGame.GameEntity
         [SerializeField] private float lookTargetSpeed;
         [SerializeField] private float damageMultiplier = 1.5f;
 
+        public Monster CurrentTarget { get; set; }
         private float _currentFireDelay;
 
         public float GetFireRate()

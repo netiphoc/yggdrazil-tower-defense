@@ -22,12 +22,12 @@ namespace TowerDefenseGame.GameState
         {
             base.OnUpdate();
             UpdateMonsterSpawner();
+            UpdateMonster();
         }
 
         public override void OnFixedUpdate()
         {
             base.OnFixedUpdate();
-            UpdateMonster();
             UpdateTower();
         }
 

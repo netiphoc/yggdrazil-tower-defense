@@ -13,3 +13,18 @@ MonoBehaviour:
   m_Name: Yggdrazil_Map20x20_MapConfigSo
   m_EditorClassIdentifier: 
   mapTexture2D: {fileID: 2800000, guid: 47dd044dfecb0ba4fb10e77dc7162c53, type: 3}
+  paths:
+  - path:
+    - {x: 8, y: 0, z: 2}
+    - {x: 8, y: 0, z: 1}
+    - {x: 18, y: 0, z: 1}
+    - {x: 18, y: 0, z: 9}
+    - {x: 17, y: 0, z: 9}
+    - {x: 16, y: 0, z: 10}
+    - {x: 11, y: 0, z: 10}
+    - {x: 11, y: 0, z: 11}
+    - {x: 1, y: 0, z: 11}
+    - {x: 1, y: 0, z: 15}
+    - {x: 17, y: 0, z: 15}
+    - {x: 17, y: 0, z: 17}
+    - {x: 1, y: 0, z: 17}

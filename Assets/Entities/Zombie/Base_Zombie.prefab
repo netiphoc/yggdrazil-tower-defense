@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2016347447684750906}
   m_Layer: 0
-  m_Name: _ZombieBase
+  m_Name: Base_Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
