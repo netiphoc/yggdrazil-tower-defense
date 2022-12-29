@@ -1,4 +1,5 @@
-﻿using TowerDefenseGame.GameEntity;
+﻿using TMPro;
+using TowerDefenseGame.GameEntity;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
@@ -9,10 +10,13 @@ namespace TowerDefenseGame.UI
     {
         [SerializeField] private DamageAble damageAble;
         [SerializeField] private Image healthBarImage;
+        [SerializeField] private TextMeshProUGUI healthText;
 
         private void Awake()
         {
             damageAble.DebugAssert();
+            healthBarImage.DebugAssert();
+            healthText.DebugAssert();
         }
 
         private void OnEnable()
@@ -31,10 +35,11 @@ namespace TowerDefenseGame.UI
             SetHealth(damageAble.GetHealth(), damageAble.GetMaxHealth());
         }
 
-        public void SetHealth(float health, float maxHealth)
+        private void SetHealth(float health, float maxHealth)
         {
             var healthScale = health / maxHealth;
             healthBarImage.fillAmount = healthScale;
+            healthText.SetText($"{health:F0}/{maxHealth:F0}");
         }
     }
 }

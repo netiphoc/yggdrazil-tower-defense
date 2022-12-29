@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: damageAble
       value: 
       objectReference: {fileID: -1286099434921013407}
+    - target: {fileID: 812593365596995349, guid: 343a5e6d00fdcf74883e5c12a18a78c4,
+        type: 3}
+      propertyPath: damageAble
+      value: 
+      objectReference: {fileID: -1286099434921013407}
     - target: {fileID: 2016347447684750906, guid: 343a5e6d00fdcf74883e5c12a18a78c4,
         type: 3}
       propertyPath: m_RootOrder
