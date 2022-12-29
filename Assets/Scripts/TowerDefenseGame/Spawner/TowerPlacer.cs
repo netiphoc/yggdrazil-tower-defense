@@ -10,7 +10,7 @@ namespace TowerDefenseGame.Spawner
         [SerializeField] private GameManager gameManager;
         [SerializeField] private Camera cam;
 
-        private int _currentTowerTypeIndex;
+        public AbstractTower SelectTower { get; set; }
 
         private void Awake()
         {
@@ -20,21 +20,6 @@ namespace TowerDefenseGame.Spawner
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                _currentTowerTypeIndex = 0;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                _currentTowerTypeIndex = 1;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                _currentTowerTypeIndex = 2;
-            }
-
             if (Input.GetMouseButtonDown(0))
             {
                 var block = GetMouseHoverBlock();
@@ -59,8 +44,7 @@ namespace TowerDefenseGame.Spawner
         {
             if (block is not TowerBlock) return;
             if (block.PlacedObject) return;
-            var towerType = gameManager.TowerSpawner.GetTowers()[_currentTowerTypeIndex];
-            var tower = gameManager.TowerSpawner.SpawnEntityType(towerType, block);
+            var tower = gameManager.TowerSpawner.SpawnEntityType(SelectTower.GetEntityType(), block);
             block.PlacedObject = tower.gameObject;
             this.Log($"Tower placed: x:{block.X} y:{block.Y}");
         }

@@ -29,6 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2016347449035404255}
+  - {fileID: 5131385909864073402}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -115,3 +116,82 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &8899004243237490866
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2016347447684750906}
+    m_Modifications:
+    - target: {fileID: 4344220443054037000, guid: b89a61590e67cd641bff05594e5ab4c2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344220443054037000, guid: b89a61590e67cd641bff05594e5ab4c2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344220443054037000, guid: b89a61590e67cd641bff05594e5ab4c2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344220443054037000, guid: b89a61590e67cd641bff05594e5ab4c2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344220443054037000, guid: b89a61590e67cd641bff05594e5ab4c2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344220443054037000, guid: b89a61590e67cd641bff05594e5ab4c2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344220443054037000, guid: b89a61590e67cd641bff05594e5ab4c2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344220443054037000, guid: b89a61590e67cd641bff05594e5ab4c2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344220443054037000, guid: b89a61590e67cd641bff05594e5ab4c2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344220443054037000, guid: b89a61590e67cd641bff05594e5ab4c2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344220443054037000, guid: b89a61590e67cd641bff05594e5ab4c2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344220443054037001, guid: b89a61590e67cd641bff05594e5ab4c2,
+        type: 3}
+      propertyPath: m_Name
+      value: UIHealthBar
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b89a61590e67cd641bff05594e5ab4c2, type: 3}
+--- !u!4 &5131385909864073402 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4344220443054037000, guid: b89a61590e67cd641bff05594e5ab4c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8899004243237490866}
+  m_PrefabAsset: {fileID: 0}

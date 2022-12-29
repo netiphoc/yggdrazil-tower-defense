@@ -1,5 +1,6 @@
 ﻿using TowerDefenseGame.GameState;
 using UnityEngine;
+using UnityEngine.Events;
 using Utilities;
 
 namespace TowerDefenseGame
@@ -13,7 +14,19 @@ namespace TowerDefenseGame
             GameOver,
         }
 
-        public GameStateType CurrentGameState { get; private set; }
+        public UnityEvent<GameStateType> onGameStateChanged;
+
+        private GameStateType _currentGameState;
+
+        public GameStateType CurrentGameState
+        {
+            get => _currentGameState;
+            set
+            {
+                _currentGameState = value;
+                onGameStateChanged?.Invoke(value);
+            }
+        }
 
         [SerializeField] private GameManager gameManager;
 
