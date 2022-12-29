@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Utilities;
 
 namespace TowerDefenseGame.GameEntity
 {
     public class TowerC : AbstractTower
     {
+        public UnityEvent<Monster> onSlowTarget;
+
         [Header("Special Ammo")] [SerializeField]
         private float enemySpeedDecrease = 0.35f;
 
