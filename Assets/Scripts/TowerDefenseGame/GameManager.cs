@@ -14,6 +14,8 @@ namespace TowerDefenseGame
         [Header("Tower")] [SerializeField] private TowerPrefabSo towerPrefabSo;
         [Header("Wave")] [SerializeField] private float waveUpdateInterval;
 
+        public TowerPrefabSo TowerPrefabSo => towerPrefabSo;
+
         public MapManager MapManager { get; private set; }
         public WaypointManager WaypointManager { get; private set; }
         public MonsterSpawner MonsterSpawner { get; private set; }
