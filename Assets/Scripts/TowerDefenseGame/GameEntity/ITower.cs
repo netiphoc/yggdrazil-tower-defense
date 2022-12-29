@@ -5,6 +5,7 @@ namespace TowerDefenseGame.GameEntity
 {
     public interface ITower
     {
+        string GetInfo();
         float GetFireRate();
         void SetFireRate(float fireRate);
         float GetDamage();

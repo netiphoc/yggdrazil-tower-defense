@@ -580,17 +580,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   initHealth: 100
-  onAttackMonster:
+  onAttackEnemy:
     m_PersistentCalls:
       m_Calls: []
   targetEntityType: {fileID: 11400000, guid: c95faac63243e6148a0d43ec633c968e, type: 2}
+  towerInfo: 'Bullet Type: Explosive
+
+    Target: Farthest And Strongest Enemy'
   fireRate: 2
   fireRange: 5
   minDamage: 8
   maxDamage: 10
   lookTargetSpeed: 10
   damageMultiplier: 1.5
-  rangeMultiplier: 1
   onExplodeArea:
     m_PersistentCalls:
       m_Calls: []

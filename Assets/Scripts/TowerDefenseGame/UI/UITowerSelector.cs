@@ -23,7 +23,7 @@ namespace TowerDefenseGame.UI
 
         [Header("UI")] [SerializeField] private Transform towerIconItemContainer;
         [SerializeField] private UITowerIconItem towerIconItemTemplate;
-
+        [Space] [SerializeField] private UITowerInfo uiTowerInfo;
         private List<UITowerIconItem> _uiTowerIconItems;
 
         private void Awake()
@@ -32,6 +32,7 @@ namespace TowerDefenseGame.UI
             towerPlacer.DebugAssert();
             towerIconItemTemplate.DebugAssert();
             defaultIcon.DebugAssert();
+            uiTowerInfo.DebugAssert();
 
             towerIconItemContainer.gameObject.SetActive(false);
             towerIconItemTemplate.gameObject.SetActive(false);
@@ -53,7 +54,7 @@ namespace TowerDefenseGame.UI
 
         private void OnGameStateChanged(GameController.GameStateType gameStateType)
         {
-            towerIconItemContainer.gameObject.SetActive(gameStateType != GameController.GameStateType.Prepare);
+            towerIconItemContainer.gameObject.SetActive(gameStateType != GameController.GameStateType.GameOver);
         }
 
         private Sprite GetIcon(EntityTypeSo entityType)
@@ -78,24 +79,35 @@ namespace TowerDefenseGame.UI
                 var towerIconItem = Instantiate(towerIconItemTemplate, towerIconItemContainer);
                 towerIconItem.gameObject.SetActive(true);
                 towerIconItem.SetIcon(icon);
-                towerIconItem.SetTowerIconIndex(i);
+                var towerPrefab = gameController.GameManager.TowerPrefabSo.Towers[i];
+                towerIconItem.SetTowerIconIndex(towerPrefab);
                 towerIconItem.onTowerIconClicked.AddListener(OnTowerIconClick);
+                towerIconItem.onTowerIconEnter.AddListener(OnTowerIconEnter);
+                towerIconItem.onTowerIconExit.AddListener(OnTowerIconExit);
                 _uiTowerIconItems.Add(towerIconItem);
             }
         }
 
         private void OnTowerIconClick(UITowerIconItem towerIconItem)
         {
-            towerPlacer.SelectTower = gameController.GameManager.TowerPrefabSo.Towers[towerIconItem.TowerIconIndex];
-            SetSelectedIcon(towerIconItem);
+            towerPlacer.SelectedTower = towerIconItem.TowerPrefab;
+            UpdateSelectedIcon(towerIconItem);
         }
 
-        private void SetSelectedIcon(UITowerIconItem towerIconItem)
+        private void UpdateSelectedIcon(UITowerIconItem towerIconItem)
         {
             foreach (var item in _uiTowerIconItems)
-            {
                 item.SetSelected(towerIconItem == item);
-            }
+        }
+
+        private void OnTowerIconEnter(UITowerIconItem towerIconItem)
+        {
+            uiTowerInfo.ShowInfo(towerIconItem.TowerPrefab);
+        }
+
+        private void OnTowerIconExit(UITowerIconItem towerIconItem)
+        {
+            uiTowerInfo.HideInfo();
         }
     }
 }

@@ -113,17 +113,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   initHealth: 100
-  onAttackMonster:
+  onAttackEnemy:
     m_PersistentCalls:
       m_Calls: []
   targetEntityType: {fileID: 11400000, guid: 06bc4680827e3bb4caeaa4558bdb5ef9, type: 2}
+  towerInfo: 'Bullet Type: Slow Effect
+
+    Target: Closest Enemy'
   fireRate: 1
   fireRange: 3
   minDamage: 1
   maxDamage: 1
   lookTargetSpeed: 10
   damageMultiplier: 1.5
-  rangeMultiplier: 1
   onSlowTarget:
     m_PersistentCalls:
       m_Calls: []

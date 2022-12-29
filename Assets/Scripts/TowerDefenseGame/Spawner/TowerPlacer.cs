@@ -1,6 +1,7 @@
 ﻿using TowerDefenseGame.GameEntity;
 using TowerDefenseGame.Map;
 using UnityEngine;
+using UnityEngine.Events;
 using Utilities;
 
 namespace TowerDefenseGame.Spawner
@@ -10,10 +11,22 @@ namespace TowerDefenseGame.Spawner
         [SerializeField] private GameController gameController;
         [SerializeField] private Camera cam;
 
-        public AbstractTower SelectTower { get; set; }
+        public UnityEvent<AbstractTower> onSelectedTower;
+
+        private AbstractTower _selectedTower;
+
+        public AbstractTower SelectedTower
+        {
+            get => _selectedTower;
+            set
+            {
+                _selectedTower = value;
+                onSelectedTower?.Invoke(value);
+            }
+        }
 
         public bool CanPlace { get; set; }
-        public bool HasTower => SelectTower;
+        public bool HasTower => SelectedTower;
 
         private void Awake()
         {
@@ -33,7 +46,7 @@ namespace TowerDefenseGame.Spawner
 
         private void OnGameStateChanged(GameController.GameStateType gameStateType)
         {
-            CanPlace = gameStateType == GameController.GameStateType.InGame;
+            CanPlace = gameStateType is GameController.GameStateType.InGame or GameController.GameStateType.Prepare;
         }
 
         private void Update()
@@ -64,7 +77,7 @@ namespace TowerDefenseGame.Spawner
             if (!HasTower) return;
             if (block is not TowerBlock) return;
             if (block.PlacedObject) return;
-            var tower = gameController.GameManager.TowerSpawner.SpawnEntityType(SelectTower.GetEntityType(), block);
+            var tower = gameController.GameManager.TowerSpawner.SpawnEntityType(SelectedTower.GetEntityType(), block);
             block.PlacedObject = tower.gameObject;
             this.Log($"Tower placed: x:{block.X} y:{block.Y}");
         }

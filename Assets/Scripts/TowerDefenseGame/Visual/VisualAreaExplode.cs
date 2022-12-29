@@ -62,5 +62,11 @@ namespace TowerDefenseGame.Visual
             foreach (var fx in explodeFx)
                 fx.parent = null;
         }
+
+        private void OnDestroy()
+        {
+            foreach (var fx in explodeFx)
+                Destroy(fx.gameObject);
+        }
     }
 }

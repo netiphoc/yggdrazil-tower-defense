@@ -30,7 +30,7 @@ namespace TowerDefenseGame.UI
         private void OnEntityDamaged(DamageAble damageable, float damage)
         {
             damageText.gameObject.SetActive(true);
-            damageText.SetText($"-{damage:F0} HP");
+            damageText.SetText($"-{damage:F1} HP");
             CancelInvoke(nameof(HideText));
             Invoke(nameof(HideText), showDuration);
         }

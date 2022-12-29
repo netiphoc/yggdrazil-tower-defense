@@ -26,12 +26,12 @@ namespace TowerDefenseGame.Visual
 
         private void OnEnable()
         {
-            tower.onAttackMonster.AddListener(OnAttackMonster);
+            tower.onAttackEnemy.AddListener(OnAttackMonster);
         }
 
         private void OnDisable()
         {
-            tower.onAttackMonster.RemoveListener(OnAttackMonster);
+            tower.onAttackEnemy.RemoveListener(OnAttackMonster);
         }
 
         private void OnAttackMonster(Monster monster)

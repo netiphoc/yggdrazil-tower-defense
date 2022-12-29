@@ -10,11 +10,12 @@ namespace TowerDefenseGame.GameEntity
 {
     public abstract class AbstractTower : DamageAble, ITower
     {
-        public UnityEvent<Monster> onAttackMonster;
+        public UnityEvent<Monster> onAttackEnemy;
 
         [Header("Tower Config")] [SerializeField]
         private EntityTypeSo targetEntityType;
 
+        [SerializeField, TextArea] private string towerInfo;
         [Space] [SerializeField] private float fireRate;
         [SerializeField] private float fireRange;
 
@@ -24,6 +25,11 @@ namespace TowerDefenseGame.GameEntity
         [SerializeField] private float damageMultiplier = 1.5f;
 
         private float _currentFireDelay;
+
+        public string GetInfo()
+        {
+            return towerInfo;
+        }
 
         public float GetFireRate()
         {
@@ -62,7 +68,7 @@ namespace TowerDefenseGame.GameEntity
 
         public float GetFireRange()
         {
-            return fireRange * rangeMultiplier;
+            return fireRange;
         }
 
         public void SetFireRange(float towerFireRange)
@@ -173,7 +179,7 @@ namespace TowerDefenseGame.GameEntity
             }
 
             monster.Damage(modifiedDamage);
-            onAttackMonster?.Invoke(monster);
+            onAttackEnemy?.Invoke(monster);
         }
 
         #endregion
