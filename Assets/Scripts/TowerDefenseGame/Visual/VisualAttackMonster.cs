@@ -10,11 +10,18 @@ namespace TowerDefenseGame.Visual
         [SerializeField] private Transform laserTransform;
         [SerializeField] private float laserDuration;
 
+        private float _targetLaserLength;
+        private Vector3 _startLaserLength;
+
         private void Awake()
         {
             tower.DebugAssert();
             laserTransform.DebugAssert();
             laserTransform.gameObject.SetActive(false);
+
+            var scale = laserTransform.localScale;
+            scale.z = 0.01f;
+            _startLaserLength = scale;
         }
 
         private void OnEnable()
@@ -34,12 +41,27 @@ namespace TowerDefenseGame.Visual
             this.Log($"Attacking: {monster.gameObject.name}");
         }
 
+        private void Update()
+        {
+            var localScale = laserTransform.localScale;
+            var targetScale = localScale;
+            targetScale.z = _targetLaserLength;
+
+            // Distance = Time x speed
+            // Speed = Distance / Time 
+            var speed = _targetLaserLength / laserDuration;
+            speed *= 1.2f;
+
+            targetScale = Vector3.Slerp(localScale, targetScale, Time.deltaTime * speed);
+            localScale = targetScale;
+            laserTransform.localScale = localScale;
+        }
+
         private void DoLaser(float distance)
         {
+            _targetLaserLength = distance;
             laserTransform.gameObject.SetActive(true);
-            var oldScale = laserTransform.localScale;
-            oldScale.z = distance;
-            laserTransform.localScale = oldScale;
+            laserTransform.localScale = _startLaserLength;
             CancelInvoke(nameof(HideLaser));
             Invoke(nameof(HideLaser), laserDuration);
         }
