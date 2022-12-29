@@ -14,6 +14,7 @@ namespace TowerDefenseGame.GameEntity
             var targetMonster = GetClosestMonsterInRange(monsters);
             if (!targetMonster) return;
             LookAtTarget(targetMonster);
+            if (!InFireRange(targetMonster)) return;
             if (!CanFire()) return;
             SetFireDelay();
 

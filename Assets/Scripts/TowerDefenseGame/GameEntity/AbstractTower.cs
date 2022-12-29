@@ -76,7 +76,7 @@ namespace TowerDefenseGame.GameEntity
 
         public float GetFireRange()
         {
-            return fireRange;
+            return fireRange + 0.5f;
         }
 
         public void SetFireRange(float towerFireRange)
