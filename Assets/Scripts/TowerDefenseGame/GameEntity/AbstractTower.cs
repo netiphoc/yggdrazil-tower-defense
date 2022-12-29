@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TowerDefenseGame.GameEntity.ScriptableObjects;
 using Unity.Mathematics;
 using UnityEngine;
@@ -24,13 +23,11 @@ namespace TowerDefenseGame.GameEntity
         [Space] [SerializeField] private float lookTargetSpeed;
         [SerializeField] private float damageMultiplier = 1.5f;
 
-        [Header("Optimize")] [SerializeField] private float rangeMultiplier = 1.5f;
-
         private float _currentFireDelay;
 
         public float GetFireRate()
         {
-            return fireRate * rangeMultiplier;
+            return fireRate;
         }
 
         public void SetFireRate(float towerFireRate)

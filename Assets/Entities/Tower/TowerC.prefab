@@ -123,5 +123,8 @@ MonoBehaviour:
   maxDamage: 1
   lookTargetSpeed: 10
   damageMultiplier: 1.5
-  rangeMultiplier: 1.5
+  rangeMultiplier: 1
+  onSlowTarget:
+    m_PersistentCalls:
+      m_Calls: []
   enemySpeedDecrease: 0.35

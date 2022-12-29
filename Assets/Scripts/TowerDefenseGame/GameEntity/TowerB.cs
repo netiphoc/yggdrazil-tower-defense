@@ -28,13 +28,13 @@ namespace TowerDefenseGame.GameEntity
             if (!CanFire()) return;
             SetFireDelay();
 
-            DoAreaDamage(monsters);
+            DoAreaDamage(monsters, targetMonster.transform.position);
             this.Log($"{name} Fire!");
         }
 
-        private void DoAreaDamage(List<Monster> monsters)
+        private void DoAreaDamage(List<Monster> monsters, Vector3 targetPosition)
         {
-            var explodeBlocks = FindExplodeBlock();
+            var explodeBlocks = FindExplodeBlock(targetPosition);
             onExplodeArea?.Invoke(explodeBlocks);
 
             // Do area explode damage
@@ -50,18 +50,23 @@ namespace TowerDefenseGame.GameEntity
             }
         }
 
-        private Block[] FindExplodeBlock()
+        private Block[] FindExplodeBlock(Vector3 explodePosition)
         {
             var gameManager = FindObjectOfType<GameManager>();
             var grid = gameManager.MapManager.Grid;
-            var position = transform.position;
 
             return new[]
             {
-                GetBlock(grid, new Vector3(0, 0, dealDamageArea) + position),
-                GetBlock(grid, new Vector3(dealDamageArea, 0, 0) + position),
-                GetBlock(grid, new Vector3(0, 0, -dealDamageArea) + position),
-                GetBlock(grid, new Vector3(-dealDamageArea, 0, 0) + position),
+                // Center
+                GetBlock(grid, new Vector3(0, 0, 0) + explodePosition),
+                // Front
+                GetBlock(grid, new Vector3(0, 0, dealDamageArea) + explodePosition),
+                // Right
+                GetBlock(grid, new Vector3(dealDamageArea, 0, 0) + explodePosition),
+                // Back
+                GetBlock(grid, new Vector3(0, 0, -dealDamageArea) + explodePosition),
+                // Left
+                GetBlock(grid, new Vector3(-dealDamageArea, 0, 0) + explodePosition),
             };
         }
 
