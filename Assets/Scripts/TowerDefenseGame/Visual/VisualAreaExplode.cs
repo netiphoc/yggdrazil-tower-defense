@@ -38,7 +38,7 @@ namespace TowerDefenseGame.Visual
                 var fx = explodeFx[i];
                 var block = blocks[i];
                 if (!block) continue;
-                var explodePos = new Vector3(block.X, 1f, block.Y);
+                var explodePos = new Vector3(block.X, 0f, block.Y);
                 fx.position = explodePos;
                 fx.gameObject.SetActive(true);
                 StartCoroutine(HideFx(fx));

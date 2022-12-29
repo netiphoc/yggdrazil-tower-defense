@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAble: {fileID: 0}
-  blinkDuration: 0.05
+  blinkDuration: 0.1
   meshRenderer: {fileID: 2016347449035404253}
   blinkMaterial: {fileID: 2100000, guid: a1a59df9a77edc044a36d0b76aeee153, type: 2}
 --- !u!1001 &4192848635991242542

@@ -83,6 +83,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a7bfe37f22bacfa4d8508dfa6515958e, type: 2}
+    - target: {fileID: 2016347449035404255, guid: 343a5e6d00fdcf74883e5c12a18a78c4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.51758397
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016347449035404255, guid: 343a5e6d00fdcf74883e5c12a18a78c4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2588
+      objectReference: {fileID: 0}
+    - target: {fileID: 5131385909864073402, guid: 343a5e6d00fdcf74883e5c12a18a78c4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.742
+      objectReference: {fileID: 0}
+    - target: {fileID: 5819730622771422244, guid: 343a5e6d00fdcf74883e5c12a18a78c4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2799999
+      objectReference: {fileID: 0}
     - target: {fileID: 8407732462468437877, guid: 343a5e6d00fdcf74883e5c12a18a78c4,
         type: 3}
       propertyPath: damageAble
