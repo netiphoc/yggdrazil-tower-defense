@@ -37,11 +37,16 @@ namespace TowerDefenseGame.GameEntity
             var explodeBlocks = FindExplodeBlock();
             onExplodeArea?.Invoke(explodeBlocks);
 
-            var damagePos = transform.position;
+            // Do area explode damage
             foreach (var monster in monsters)
             {
-                if (!IsInDamageArea(damagePos, dealDamageArea, monster)) continue;
-                DamageMonster(monster);
+                foreach (var block in explodeBlocks)
+                {
+                    if (!block) continue;
+                    var distToTower = Vector3.Distance(new Vector3(block.X, 0, block.Y), monster.transform.position);
+                    if (distToTower > 0.5f) continue;
+                    DamageMonster(monster);
+                }
             }
         }
 
@@ -64,11 +69,6 @@ namespace TowerDefenseGame.GameEntity
         {
             var block = grid.GetElementAt(position.x, position.z);
             return block is TowerBlock ? null : block;
-        }
-
-        private bool IsInDamageArea(Vector3 damagePos, float damageArea, Monster target)
-        {
-            return Vector3.Distance(damagePos, target.transform.position) < damageArea;
         }
     }
 }

@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 8303866639743547727}
   - {fileID: 7637046711272845770}
   - {fileID: 1064906907570655794}
-  explodeDuration: 0.2
+  explodeDuration: 0.5
 --- !u!1001 &2716462325020265188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -384,6 +384,11 @@ PrefabInstance:
       propertyPath: tower
       value: 
       objectReference: {fileID: -6400041417878841565}
+    - target: {fileID: -7150251087561265066, guid: 58f40c74dc1c4f446a9679935ea43ca6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5967466312726709443, guid: 58f40c74dc1c4f446a9679935ea43ca6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
