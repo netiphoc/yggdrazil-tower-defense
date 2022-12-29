@@ -19,10 +19,9 @@ namespace TowerDefenseGame.GameEntity
         /// <param name="monsters"></param>
         public override void TryAttackTarget(List<Monster> monsters)
         {
-            var targetMonster = GetClosestMonster(monsters);
+            var targetMonster = GetClosestMonsterInRange(monsters);
             if (!targetMonster) return;
             LookAtTarget(targetMonster);
-            if (!InFireRange(targetMonster)) return;
             if (!CanFire()) return;
             SetFireDelay();
 

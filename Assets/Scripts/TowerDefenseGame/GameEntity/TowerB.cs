@@ -21,7 +21,7 @@ namespace TowerDefenseGame.GameEntity
         /// <param name="monsters"></param>
         public override void TryAttackTarget(List<Monster> monsters)
         {
-            var targetMonster = GetFarthestAndMostHealthMonster(monsters);
+            var targetMonster = GetFarthestAndMostHealthMonsterInRange(monsters);
             if (!targetMonster) return;
             LookAtTarget(targetMonster);
             if (!InFireRange(targetMonster)) return;

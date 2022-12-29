@@ -5,7 +5,6 @@ using TowerDefenseGame.Map;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Rendering.UI;
 using Utilities;
 using Random = UnityEngine.Random;
 
@@ -111,7 +110,7 @@ namespace TowerDefenseGame.GameEntity
             return GetDistance(monster) <= GetFireRange();
         }
 
-        protected Monster GetClosestMonster(List<Monster> monsters, bool closest = true)
+        protected Monster GetClosestMonsterInRange(List<Monster> monsters, bool closest = true)
         {
             if (monsters.Count == 0) return null;
             var closestMonster = monsters[0];
@@ -129,12 +128,12 @@ namespace TowerDefenseGame.GameEntity
             return closestMonster;
         }
 
-        protected Monster GetFarthestMonster(List<Monster> monsters)
+        protected Monster GetFarthestMonsterInRange(List<Monster> monsters)
         {
-            return GetClosestMonster(monsters, false);
+            return GetClosestMonsterInRange(monsters, false);
         }
 
-        protected Monster GetClosestMostHpMonster(List<Monster> monsters, bool closest = true)
+        protected Monster GetClosestMostHpMonsterInRange(List<Monster> monsters, bool closest = true)
         {
             if (monsters.Count == 0) return null;
             var closestMonster = monsters[0];
@@ -156,9 +155,9 @@ namespace TowerDefenseGame.GameEntity
             return closestMonster;
         }
 
-        protected Monster GetFarthestAndMostHealthMonster(List<Monster> monsters)
+        protected Monster GetFarthestAndMostHealthMonsterInRange(List<Monster> monsters)
         {
-            return GetClosestMostHpMonster(monsters, false);
+            return GetClosestMostHpMonsterInRange(monsters, false);
         }
 
         protected bool CanFire()
