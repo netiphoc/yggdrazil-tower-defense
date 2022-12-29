@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TowerDefenseGame.GameEntity;
 using TowerDefenseGame.GameEntity.ScriptableObjects;
 using TowerDefenseGame.Map;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace TowerDefenseGame.Spawner
 {
-    public class TowerSpawner
+    public class TowerSpawner : IDisposable
     {
         private readonly Dictionary<EntityTypeSo, TowerPooling> _prefabPool;
 
@@ -47,6 +50,14 @@ namespace TowerDefenseGame.Spawner
         public EntityTypeSo[] GetTowers()
         {
             return _prefabPool.Keys.ToArray();
+        }
+
+        public void Dispose()
+        {
+            foreach (var tower in _spawnedTowers)
+            {
+                Object.Destroy(tower.gameObject);
+            }
         }
     }
 }

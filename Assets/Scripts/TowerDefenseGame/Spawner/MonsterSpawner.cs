@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TowerDefenseGame.GameEntity;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace TowerDefenseGame.Spawner
 {
-    public class MonsterSpawner
+    public class MonsterSpawner : IDisposable
     {
         private readonly MonsterPooling _monsterPooling;
 
@@ -31,6 +34,14 @@ namespace TowerDefenseGame.Spawner
         {
             _spawnedMonsters.Remove(monster);
             _monsterPooling.Return(monster);
+        }
+
+        public void Dispose()
+        {
+            foreach (var monster in _spawnedMonsters)
+            {
+                Object.Destroy(monster.gameObject);
+            }
         }
     }
 }

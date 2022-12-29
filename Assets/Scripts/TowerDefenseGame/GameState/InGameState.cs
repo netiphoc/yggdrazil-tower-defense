@@ -1,27 +1,33 @@
 ﻿using UnityEngine;
+using Utilities;
 
 namespace TowerDefenseGame.GameState
 {
     public class InGameState : State
     {
         private readonly int _spawnCount;
-        private readonly float _spawnDelay;
+        private readonly float _waveDuration;
         private readonly float _difficultyIncreasePerWave;
 
-        private float _currentDelay;
-
-        public InGameState(GameController gameController, int spawnCount, float spawnDelay,
+        public InGameState(GameController gameController, int spawnCount, float waveDuration,
             float difficultyIncreasePerWave) : base(gameController)
         {
             _spawnCount = spawnCount;
-            _spawnDelay = spawnDelay;
+            _waveDuration = waveDuration;
             _difficultyIncreasePerWave = difficultyIncreasePerWave;
+        }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            NextWave();
         }
 
         public override void OnUpdate()
         {
             base.OnUpdate();
-            UpdateMonsterSpawner();
+
+            UpdateWave();
             UpdateMonster();
         }
 
@@ -49,18 +55,6 @@ namespace TowerDefenseGame.GameState
 
                 monster.UpdateMoveToPath();
             }
-        }
-
-        private void UpdateMonsterSpawner()
-        {
-            if (_currentDelay > 0f)
-            {
-                _currentDelay -= Time.deltaTime;
-                return;
-            }
-
-            _currentDelay = _spawnDelay;
-            SpawnWaveMonster();
         }
 
         private void SpawnWaveMonster()
@@ -95,6 +89,27 @@ namespace TowerDefenseGame.GameState
             {
                 tower.TryAttackTarget(GameManager.MonsterSpawner.GetSpawnedMonster());
             }
+        }
+
+        #endregion
+
+        #region Wave
+
+        private void UpdateWave()
+        {
+            var wave = GameManager.WaveManager;
+            wave.UpdateWave();
+
+            if (!wave.WaveTimer.IsCountdownOver) return;
+            NextWave();
+        }
+
+        private void NextWave()
+        {
+            var wave = GameManager.WaveManager;
+            wave.StartWave(_waveDuration);
+            wave.Wave++;
+            SpawnWaveMonster();
         }
 
         #endregion

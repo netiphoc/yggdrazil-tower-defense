@@ -6,12 +6,21 @@ namespace TowerDefenseGame
 {
     public class GameController : MonoBehaviour
     {
+        public enum GameStateType
+        {
+            Prepare,
+            InGame,
+            GameOver,
+        }
+
+        public GameStateType CurrentGameState { get; private set; }
+
         [SerializeField] private GameManager gameManager;
 
         [Header("Game Config")] [SerializeField]
         private int enemyPerSpawn = 10;
 
-        [SerializeField] private float spawnDelay = 60f;
+        [SerializeField] private float waveDuration = 60f;
         [SerializeField] private float difficultyIncreasePerWave = 0.5f;
 
         public GameManager GameManager => gameManager;
@@ -26,7 +35,7 @@ namespace TowerDefenseGame
 
         private void Start()
         {
-            SetState(new InGameState(this, enemyPerSpawn, spawnDelay, difficultyIncreasePerWave));
+            SetState(GameStateType.Prepare);
         }
 
         private void Update()
@@ -39,12 +48,33 @@ namespace TowerDefenseGame
             _gameState?.OnFixedUpdate();
         }
 
+        #region GameState
+
         public void SetState(State gameState)
         {
             _gameState?.OnExit();
             _gameState = gameState;
             _gameState.OnEnter();
         }
+
+        public void SetState(GameStateType gameStateType)
+        {
+            CurrentGameState = gameStateType;
+
+            switch (gameStateType)
+            {
+                case GameStateType.Prepare:
+                    SetState(new PrepareGameState(this));
+                    break;
+                case GameStateType.InGame:
+                    SetState(new InGameState(this, enemyPerSpawn, waveDuration, difficultyIncreasePerWave));
+                    break;
+                case GameStateType.GameOver:
+                    break;
+            }
+        }
+
+        #endregion
 
         public void InCreaseDifficulty(float percent)
         {
