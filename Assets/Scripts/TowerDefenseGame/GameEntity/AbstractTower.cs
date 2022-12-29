@@ -76,7 +76,7 @@ namespace TowerDefenseGame.GameEntity
 
         public float GetFireRange()
         {
-            return fireRange + 0.5f;
+            return fireRange;
         }
 
         public void SetFireRange(float towerFireRange)
@@ -107,7 +107,7 @@ namespace TowerDefenseGame.GameEntity
 
         protected bool InFireRange(Monster monster)
         {
-            return GetDistance(monster) <= GetFireRange();
+            return GetDistance(monster) <= GetFireRange() + 0.5f;
         }
 
         protected Monster GetClosestMonsterInRange(List<Monster> monsters, bool closest = true)
