@@ -8,13 +8,14 @@ namespace TowerDefenseGame.GameEntity
     {
         void Damage(float amount);
         float GetHealth();
-        float GetBaseHealth();
+        float GetMaxHealth();
         void SetHealth(float health);
     }
 
     public class DamageAble : Entity, IDamageAble
     {
-        public UnityEvent<Entity> onEntityDead;
+        public UnityEvent<DamageAble, float> onEntityDamaged;
+        public UnityEvent<DamageAble> onEntityDead;
         [SerializeField] private float initHealth;
         private float _health;
         public bool Dead { get; private set; }
@@ -29,7 +30,8 @@ namespace TowerDefenseGame.GameEntity
         {
             if (amount < 0f) return;
             SetHealth(GetHealth() - amount);
-            this.Log($"Damage {name}: {amount} | {GetHealth():F0}/{GetBaseHealth()}");
+            this.Log($"Damage {name}: {amount} | {GetHealth():F0}/{GetMaxHealth()}");
+            onEntityDamaged?.Invoke(this, amount);
             if (GetHealth() > 0f) return;
             Dead = true;
             onEntityDead?.Invoke(this);
@@ -41,14 +43,14 @@ namespace TowerDefenseGame.GameEntity
             return _health;
         }
 
-        public float GetBaseHealth()
+        public float GetMaxHealth()
         {
             return initHealth;
         }
 
         public void SetHealth(float hp)
         {
-            _health = Mathf.Clamp(hp, 0f, GetBaseHealth());
+            _health = Mathf.Clamp(hp, 0f, GetMaxHealth());
         }
 
         public override void ResetEntity()

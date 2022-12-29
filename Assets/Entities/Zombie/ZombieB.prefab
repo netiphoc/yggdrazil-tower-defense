@@ -73,6 +73,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a45504fcd2dbb28408bc287785f898a2, type: 2}
+    - target: {fileID: 8407732462468437877, guid: 343a5e6d00fdcf74883e5c12a18a78c4,
+        type: 3}
+      propertyPath: damageAble
+      value: 
+      objectReference: {fileID: 3223909774029697353}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -101,6 +106,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityTypeSo: {fileID: 11400000, guid: c95faac63243e6148a0d43ec633c968e, type: 2}
+  onEntityDamaged:
+    m_PersistentCalls:
+      m_Calls: []
   onEntityDead:
     m_PersistentCalls:
       m_Calls: []
