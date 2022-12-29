@@ -7,15 +7,33 @@ namespace TowerDefenseGame.Spawner
 {
     public class TowerPlacer : MonoBehaviour
     {
-        [SerializeField] private GameManager gameManager;
+        [SerializeField] private GameController gameController;
         [SerializeField] private Camera cam;
 
         public AbstractTower SelectTower { get; set; }
 
+        public bool CanPlace { get; set; }
+        public bool HasTower => SelectTower;
+
         private void Awake()
         {
-            gameManager.DebugAssert();
+            gameController.DebugAssert();
             cam.DebugAssert();
+        }
+
+        private void OnEnable()
+        {
+            gameController.onGameStateChanged.AddListener(OnGameStateChanged);
+        }
+
+        private void OnDisable()
+        {
+            gameController.onGameStateChanged.RemoveListener(OnGameStateChanged);
+        }
+
+        private void OnGameStateChanged(GameController.GameStateType gameStateType)
+        {
+            CanPlace = gameStateType == GameController.GameStateType.InGame;
         }
 
         private void Update()
@@ -42,18 +60,22 @@ namespace TowerDefenseGame.Spawner
 
         private void TryPlaceTower(Block block)
         {
+            if (!CanPlace) return;
+            if (!HasTower) return;
             if (block is not TowerBlock) return;
             if (block.PlacedObject) return;
-            var tower = gameManager.TowerSpawner.SpawnEntityType(SelectTower.GetEntityType(), block);
+            var tower = gameController.GameManager.TowerSpawner.SpawnEntityType(SelectTower.GetEntityType(), block);
             block.PlacedObject = tower.gameObject;
             this.Log($"Tower placed: x:{block.X} y:{block.Y}");
         }
 
         private void TryRemovePlacedObject(Block block)
         {
+            if (!CanPlace) return;
+            if (!HasTower) return;
             if (block is not TowerBlock) return;
             if (!block.PlacedObject) return;
-            gameManager.TowerSpawner.DeSpawn(block.PlacedObject.GetComponent<AbstractTower>());
+            gameController.GameManager.TowerSpawner.DeSpawn(block.PlacedObject.GetComponent<AbstractTower>());
             block.PlacedObject = null;
             this.Log($"Tower removed: x:{block.X} y:{block.Y}");
         }

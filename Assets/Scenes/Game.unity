@@ -1108,7 +1108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e39d787cff4d40955c3aebe46002cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1896572747}
+  gameController: {fileID: 1168589555}
   cam: {fileID: 1268602326}
 --- !u!4 &1280047720
 Transform:
