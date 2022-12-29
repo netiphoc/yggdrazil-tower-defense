@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 0}
+  attackFov: 30
   laserTransform: {fileID: 8631206929230885099}
   laserDuration: 0.05
 --- !u!1001 &7494841474596979862

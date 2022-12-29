@@ -7,6 +7,7 @@ namespace TowerDefenseGame.Visual
     public class VisualAttackMonster : MonoBehaviour
     {
         [SerializeField] private AbstractTower tower;
+        [SerializeField] private float attackFov = 30f;
         [SerializeField] private Transform laserTransform;
         [SerializeField] private float laserDuration;
 
@@ -36,6 +37,10 @@ namespace TowerDefenseGame.Visual
 
         private void OnAttackMonster(Monster monster)
         {
+            var fov = InFov(monster.transform.position);
+            var inFov = fov < attackFov;
+            this.Log($"FOV: {fov}");
+            if (!inFov) return;
             var lineLenght = Vector3.Distance(monster.transform.position, transform.position);
             DoLaser(lineLenght);
             this.Log($"Attacking: {monster.gameObject.name}");
@@ -69,6 +74,14 @@ namespace TowerDefenseGame.Visual
         private void HideLaser()
         {
             laserTransform.gameObject.SetActive(false);
+        }
+
+        private float InFov(Vector3 targetPos)
+        {
+            var dir = (targetPos - transform.position).normalized;
+            var dot = Vector3.Dot(transform.forward, dir);
+            var radian = Mathf.Acos(dot);
+            return radian * Mathf.Rad2Deg;
         }
     }
 }
