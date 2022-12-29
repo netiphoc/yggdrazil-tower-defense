@@ -9,15 +9,13 @@ namespace TowerDefenseGame.Map
         public int X { get; private set; }
         public int Y { get; private set; }
 
+        public Vector3 Position { get; private set; }
+
         public void SetBlock(int x, int y)
         {
             X = x;
             Y = y;
-        }
-
-        public Vector3 GetWorldPosition()
-        {
-            return new Vector3(X, 0, Y);
+            Position = new Vector3(X, 0, Y);
         }
     }
 }

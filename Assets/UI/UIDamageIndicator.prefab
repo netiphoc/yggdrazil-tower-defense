@@ -134,7 +134,7 @@ Transform:
   m_Children:
   - {fileID: 7704581116247681437}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7835676127099987177
 MonoBehaviour:
@@ -285,6 +285,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108737934068974340, guid: 3e691741e2430444389ad30c7ab2cfa9,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108737934068974340, guid: 3e691741e2430444389ad30c7ab2cfa9,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

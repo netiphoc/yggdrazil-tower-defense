@@ -17,6 +17,7 @@ namespace TowerDefenseGame.GameEntity
     {
         private const float ReachedDist = 0.05f;
         private const float SpeedMultiplier = 0.5f;
+        private const float RandomSpawnRange = 0.45f;
 
         [SerializeField] private float initSpeed;
         private float _speed;
@@ -54,7 +55,7 @@ namespace TowerDefenseGame.GameEntity
         public void SetPath(Vector3[] path)
         {
             if (path.Length == 0) return;
-            _offset = Random.insideUnitSphere * 0.5f;
+            _offset = Random.insideUnitSphere * RandomSpawnRange;
             _offset.y = 0f;
             _pathIndex = 0;
             _path = path;

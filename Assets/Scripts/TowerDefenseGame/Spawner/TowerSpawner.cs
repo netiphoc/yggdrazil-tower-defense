@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using TowerDefenseGame.GameEntity;
 using TowerDefenseGame.GameEntity.ScriptableObjects;
 using TowerDefenseGame.Map;
@@ -30,7 +29,7 @@ namespace TowerDefenseGame.Spawner
         {
             if (!_prefabPool.ContainsKey(entityType)) return null;
             var tower = _prefabPool[entityType].Request();
-            tower.transform.position = block.GetWorldPosition();
+            tower.transform.position = block.Position;
             _spawnedTowers.Add(tower);
             return tower;
         }
@@ -44,11 +43,6 @@ namespace TowerDefenseGame.Spawner
         {
             _spawnedTowers.Remove(tower);
             _prefabPool[tower.GetEntityType()].Return(tower);
-        }
-
-        public EntityTypeSo[] GetTowers()
-        {
-            return _prefabPool.Keys.ToArray();
         }
 
         public void Dispose()

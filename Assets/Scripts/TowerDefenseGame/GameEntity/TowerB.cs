@@ -34,7 +34,7 @@ namespace TowerDefenseGame.GameEntity
 
         private void DoAreaDamage(List<Monster> monsters, Vector3 targetPosition)
         {
-            var explodeBlocks = FindExplodeBlock(targetPosition);
+            var explodeBlocks = FindBlockAroundPosition(targetPosition, dealDamageArea);
             onExplodeArea?.Invoke(explodeBlocks);
 
             // Do area explode damage
@@ -43,37 +43,12 @@ namespace TowerDefenseGame.GameEntity
                 foreach (var block in explodeBlocks)
                 {
                     if (!block) continue;
-                    var distToTower = Vector3.Distance(new Vector3(block.X, 0, block.Y), monster.transform.position);
-                    if (distToTower > 0.5f) continue;
+                    var distToTower = Vector3.Distance(block.Position, monster.transform.position);
+                    var isInBlock = distToTower <= Grid.CellSize * 0.5f;
+                    if (!isInBlock) continue;
                     DamageMonster(monster);
                 }
             }
-        }
-
-        private Block[] FindExplodeBlock(Vector3 explodePosition)
-        {
-            var gameManager = FindObjectOfType<GameManager>();
-            var grid = gameManager.MapManager.Grid;
-
-            return new[]
-            {
-                // Center
-                GetBlock(grid, new Vector3(0, 0, 0) + explodePosition),
-                // Front
-                GetBlock(grid, new Vector3(0, 0, dealDamageArea) + explodePosition),
-                // Right
-                GetBlock(grid, new Vector3(dealDamageArea, 0, 0) + explodePosition),
-                // Back
-                GetBlock(grid, new Vector3(0, 0, -dealDamageArea) + explodePosition),
-                // Left
-                GetBlock(grid, new Vector3(-dealDamageArea, 0, 0) + explodePosition),
-            };
-        }
-
-        private Block GetBlock(Grid<Block> grid, Vector3 position)
-        {
-            var block = grid.GetElementAt(position.x, position.z);
-            return block is TowerBlock ? null : block;
         }
     }
 }

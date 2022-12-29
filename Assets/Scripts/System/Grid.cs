@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Utilities;
 
 namespace System
 {
@@ -23,6 +24,7 @@ namespace System
         {
             if (x < 0 || x >= Width || y < 0 || y >= Height)
             {
+                this.Log($"No {x} | {y}");
                 return null;
             }
 
@@ -32,6 +34,11 @@ namespace System
         public TElement GetElementAt(float x, float y)
         {
             return GetElementAt(Mathf.FloorToInt(x), Mathf.FloorToInt(y));
+        }
+
+        public TElement GetElementAt(Vector3 position)
+        {
+            return GetElementAt(Mathf.Abs(position.x), Mathf.Abs(position.z));
         }
 
         public void SetElementAt(int x, int y, TElement element)

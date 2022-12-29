@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TowerDefenseGame.GameEntity.ScriptableObjects;
+using TowerDefenseGame.Map;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.UI;
 using Utilities;
 using Random = UnityEngine.Random;
 
@@ -24,7 +27,13 @@ namespace TowerDefenseGame.GameEntity
         [Space] [SerializeField] private float lookTargetSpeed;
         [SerializeField] private float damageMultiplier = 1.5f;
 
+        protected Grid<Block> Grid;
         private float _currentFireDelay;
+
+        private void Start()
+        {
+            Grid = FindObjectOfType<GameManager>().MapManager.Grid;
+        }
 
         public string GetInfo()
         {
@@ -99,16 +108,17 @@ namespace TowerDefenseGame.GameEntity
 
         protected bool InFireRange(Monster monster)
         {
-            return GetDistance(monster) < GetFireRange();
+            return GetDistance(monster) <= GetFireRange();
         }
 
         protected Monster GetClosestMonster(List<Monster> monsters, bool closest = true)
         {
             if (monsters.Count == 0) return null;
             var closestMonster = monsters[0];
-            var closestDistSq = GetDistanceSq(monsters[0]);
+            var closestDistSq = closest ? float.MaxValue : float.MinValue;
             foreach (var monster in monsters)
             {
+                if (!InFireRange(monster)) continue;
                 var distSq = GetDistanceSq(monster);
                 var closet = closest ? distSq < closestDistSq : distSq > closestDistSq;
                 if (!closet) continue;
@@ -128,10 +138,11 @@ namespace TowerDefenseGame.GameEntity
         {
             if (monsters.Count == 0) return null;
             var closestMonster = monsters[0];
-            var closestDistSq = GetDistanceSq(monsters[0]);
-            var mostHp = monsters[0].GetHealth();
+            var closestDistSq = closest ? float.MaxValue : float.MinValue;
+            var mostHp = float.MinValue;
             foreach (var monster in monsters)
             {
+                if (!InFireRange(monster)) continue;
                 var distSq = GetDistanceSq(monster);
                 var closet = closest ? distSq < closestDistSq : distSq > closestDistSq;
                 var mostHealth = monster.GetHealth() > mostHp;
@@ -180,6 +191,45 @@ namespace TowerDefenseGame.GameEntity
 
             monster.Damage(modifiedDamage);
             onAttackEnemy?.Invoke(monster);
+        }
+
+        #endregion
+
+        #region Grid
+
+        protected Block[] FindBlockAroundPosition(Vector3 position, float range, bool ignoreTowerBlock = true)
+        {
+            var inRangeBlocks = new List<Block>();
+            var targetBlock = GetBlock(position, false);
+            if (!targetBlock)
+            {
+                this.Log($"No target block at {position}");
+                return inRangeBlocks.ToArray();
+            }
+
+            for (var x = 0; x < Grid.Width; x++)
+            {
+                for (var y = 0; y < Grid.Height; y++)
+                {
+                    var block = Grid.GetElementAt(x, y);
+                    if (ignoreTowerBlock && block is TowerBlock) continue;
+                    if (Vector3.Distance(block.Position, targetBlock.Position) > range) continue;
+                    inRangeBlocks.Add(block);
+                }
+            }
+
+            return inRangeBlocks.ToArray();
+        }
+
+        protected Block GetBlock(Vector3 position, bool ignoreTowerBlock = true)
+        {
+            var block = Grid.GetElementAt(position);
+            if (ignoreTowerBlock && block && block is TowerBlock)
+            {
+                return null;
+            }
+
+            return block;
         }
 
         #endregion
