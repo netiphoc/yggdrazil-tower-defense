@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7150251087561265066, guid: 58f40c74dc1c4f446a9679935ea43ca6,
+        type: 3}
+      propertyPath: tower
+      value: 
+      objectReference: {fileID: -3488621002522927531}
     - target: {fileID: 5967466312726709443, guid: 58f40c74dc1c4f446a9679935ea43ca6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -101,14 +106,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityTypeSo: {fileID: 11400000, guid: dbee3881e8d1378429b215ccfecaa309, type: 2}
+  onEntityDamaged:
+    m_PersistentCalls:
+      m_Calls: []
   onEntityDead:
     m_PersistentCalls:
       m_Calls: []
   initHealth: 100
+  onAttackMonster:
+    m_PersistentCalls:
+      m_Calls: []
   targetEntityType: {fileID: 11400000, guid: 06bc4680827e3bb4caeaa4558bdb5ef9, type: 2}
   fireRate: 1
+  fireRange: 3
   minDamage: 1
   maxDamage: 1
-  fireRange: 3
   lookTargetSpeed: 10
   damageMultiplier: 1.5
+  rangeMultiplier: 1.5
+  enemySpeedDecrease: 0.35

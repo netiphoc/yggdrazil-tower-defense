@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TowerDefenseGame.GameEntity.ScriptableObjects;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 using Utilities;
 using Random = UnityEngine.Random;
 
@@ -9,6 +11,8 @@ namespace TowerDefenseGame.GameEntity
 {
     public abstract class AbstractTower : DamageAble, ITower
     {
+        public UnityEvent<Monster> onAttackMonster;
+
         [Header("Tower Config")] [SerializeField]
         private EntityTypeSo targetEntityType;
 
@@ -172,6 +176,7 @@ namespace TowerDefenseGame.GameEntity
             }
 
             monster.Damage(modifiedDamage);
+            onAttackMonster?.Invoke(monster);
         }
 
         #endregion

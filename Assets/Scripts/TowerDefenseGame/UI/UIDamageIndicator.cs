@@ -1,24 +1,25 @@
-﻿using TowerDefenseGame.GameEntity;
+﻿using TMPro;
+using TowerDefenseGame.GameEntity;
 using UnityEngine;
-using UnityEngine.UI;
 using Utilities;
 
 namespace TowerDefenseGame.UI
 {
-    public class UIHealthBar : MonoBehaviour
+    public class UIDamageIndicator : MonoBehaviour
     {
         [SerializeField] private DamageAble damageAble;
-        [SerializeField] private Image healthBarImage;
+        [SerializeField] private TextMeshProUGUI damageText;
+        [SerializeField] private float showDuration;
 
         private void Awake()
         {
             damageAble.DebugAssert();
+            damageText.gameObject.SetActive(false);
         }
 
         private void OnEnable()
         {
             damageAble.onEntityDamaged.AddListener(OnEntityDamaged);
-            SetHealth(damageAble.GetHealth(), damageAble.GetMaxHealth());
         }
 
         private void OnDisable()
@@ -28,13 +29,15 @@ namespace TowerDefenseGame.UI
 
         private void OnEntityDamaged(DamageAble damageable, float damage)
         {
-            SetHealth(damageAble.GetHealth(), damageAble.GetMaxHealth());
+            damageText.gameObject.SetActive(true);
+            damageText.SetText($"-{damage:F0} HP");
+            CancelInvoke(nameof(HideText));
+            Invoke(nameof(HideText), showDuration);
         }
 
-        public void SetHealth(float health, float maxHealth)
+        private void HideText()
         {
-            var healthScale = health / maxHealth;
-            healthBarImage.fillAmount = healthScale;
+            damageText.gameObject.SetActive(false);
         }
     }
 }
