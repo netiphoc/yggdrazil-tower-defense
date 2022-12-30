@@ -40,7 +40,7 @@ namespace TowerDefenseGame.UI
                 .Replace("{time}", $"{time}")
                 .Replace("{time_length}", $"{timeLength}");
 
-            timerText.SetText($"Time: {time}");
+            timerText.SetText($"Next Wave: {time}s");
         }
     }
 }

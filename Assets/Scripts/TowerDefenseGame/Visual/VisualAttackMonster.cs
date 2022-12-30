@@ -39,7 +39,6 @@ namespace TowerDefenseGame.Visual
         {
             var fov = InFov(monster.transform.position);
             var inFov = fov < attackFov;
-            this.Log($"FOV: {fov}");
             if (!inFov) return;
             var lineLenght = Vector3.Distance(monster.transform.position, transform.position);
             DoLaser(lineLenght);

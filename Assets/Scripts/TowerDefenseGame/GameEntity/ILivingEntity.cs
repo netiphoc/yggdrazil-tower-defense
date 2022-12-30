@@ -49,7 +49,7 @@ namespace TowerDefenseGame.GameEntity
 
         public void ResetSpeed()
         {
-            _speed = initSpeed;
+            _speed = GetBaseSpeed();
         }
 
         public void SetPath(Vector3[] path)

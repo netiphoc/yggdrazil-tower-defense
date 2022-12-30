@@ -93,5 +93,9 @@ namespace TowerDefenseGame
         {
             DifficultPercent += percent;
         }
+        public void ResetDifficulty()
+        {
+            DifficultPercent =0f;
+        }
     }
 }

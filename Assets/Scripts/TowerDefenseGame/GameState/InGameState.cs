@@ -21,6 +21,7 @@ namespace TowerDefenseGame.GameState
         {
             base.OnEnter();
             NextWave();
+            GameController.ResetDifficulty();
         }
 
         public override void OnUpdate()

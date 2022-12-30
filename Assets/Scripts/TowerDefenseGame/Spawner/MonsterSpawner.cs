@@ -39,6 +39,7 @@ namespace TowerDefenseGame.Spawner
         {
             foreach (var monster in _spawnedMonsters)
             {
+                monster.ResetEntity();
                 Object.Destroy(monster.gameObject);
             }
         }
