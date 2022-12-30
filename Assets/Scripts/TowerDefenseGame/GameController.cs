@@ -34,6 +34,7 @@ namespace TowerDefenseGame
         private int enemyPerSpawn = 10;
 
         [SerializeField] private float waveDuration = 60f;
+        [SerializeField] private float enemySpawnDelay = 1f;
         [SerializeField] private float difficultyIncreasePerWave = 0.5f;
 
         public GameManager GameManager => gameManager;
@@ -80,7 +81,8 @@ namespace TowerDefenseGame
                     SetState(new PrepareGameState(this));
                     break;
                 case GameStateType.InGame:
-                    SetState(new InGameState(this, enemyPerSpawn, waveDuration, difficultyIncreasePerWave));
+                    SetState(new InGameState(this,
+                        enemyPerSpawn, waveDuration, enemySpawnDelay, difficultyIncreasePerWave));
                     break;
                 case GameStateType.GameOver:
                     break;
@@ -93,9 +95,10 @@ namespace TowerDefenseGame
         {
             DifficultPercent += percent;
         }
+
         public void ResetDifficulty()
         {
-            DifficultPercent =0f;
+            DifficultPercent = 0f;
         }
     }
 }
