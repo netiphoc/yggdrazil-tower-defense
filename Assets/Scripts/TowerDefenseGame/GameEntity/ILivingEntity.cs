@@ -6,6 +6,7 @@ namespace TowerDefenseGame.GameEntity
     {
         float GetSpeed();
         float GetBaseSpeed();
+        void SetBaseSpeed(float value);
         void SetSpeed(float value);
         void ResetSpeed();
         void SetPath(Vector3[] path);
@@ -20,16 +21,18 @@ namespace TowerDefenseGame.GameEntity
         private const float RandomSpawnRange = 0.45f;
 
         [SerializeField] private float initSpeed;
+        private float _baseSpeed;
         private float _speed;
 
         private Vector3[] _path;
         private int _pathIndex;
         private Vector3 _offset;
 
+
         protected override void Awake()
         {
             base.Awake();
-            _speed = initSpeed;
+            ResetSpeed();
         }
 
         public float GetSpeed()
@@ -39,7 +42,12 @@ namespace TowerDefenseGame.GameEntity
 
         public float GetBaseSpeed()
         {
-            return initSpeed;
+            return _baseSpeed;
+        }
+
+        public void SetBaseSpeed(float speed)
+        {
+            _baseSpeed = speed;
         }
 
         public void SetSpeed(float value)
@@ -49,7 +57,8 @@ namespace TowerDefenseGame.GameEntity
 
         public void ResetSpeed()
         {
-            _speed = GetBaseSpeed();
+            _baseSpeed = initSpeed;
+            _speed = initSpeed;
         }
 
         public void SetPath(Vector3[] path)

@@ -1,5 +1,6 @@
 ﻿using TowerDefenseGame.GameEntity;
 using UnityEngine;
+using Utilities;
 
 namespace TowerDefenseGame.GameState
 {
@@ -12,6 +13,7 @@ namespace TowerDefenseGame.GameState
         private float _monsterToSpawn;
 
         private float _currentSpawnDelay;
+        private float _currentDifficulty;
 
         public InGameState(GameController gameController, int spawnCount, float waveDuration, float spawnDelay,
             float difficultyIncreasePerWave) : base(gameController)
@@ -88,7 +90,7 @@ namespace TowerDefenseGame.GameState
             var waypointPath = GameManager.WaypointManager.WaypointPaths[0];
             var monster = GameManager.MonsterSpawner.SpawnRandomMonster();
             monster.SetPath(waypointPath.path);
-
+            monster.SetBaseSpeed(monster.GetSpeed());
             ModifyDifficultySpeed(monster);
             ModifyDifficultyHealth(monster);
         }
@@ -99,9 +101,10 @@ namespace TowerDefenseGame.GameState
         /// <param name="monster"></param>
         private void ModifyDifficultySpeed(Monster monster)
         {
-            var increaseSpeed = monster.GetSpeed() * GameController.DifficultPercent;
+            var increaseSpeed = monster.GetSpeed() * _currentDifficulty;
             var modifiedSpeed = monster.GetSpeed() + increaseSpeed;
             monster.SetSpeed(modifiedSpeed);
+            this.Log("ModifyDifficultySpeed");
         }
 
         /// <summary>
@@ -110,9 +113,10 @@ namespace TowerDefenseGame.GameState
         /// <param name="monster"></param>
         private void ModifyDifficultyHealth(Monster monster)
         {
-            var increaseHealth = monster.GetHealth() * GameController.DifficultPercent;
+            var increaseHealth = monster.GetHealth() * _currentDifficulty;
             var modifiedHealth = monster.GetHealth() + increaseHealth;
             monster.SetHealth(modifiedHealth);
+            this.Log("ModifyDifficultyHealth");
         }
 
         #endregion
@@ -140,13 +144,15 @@ namespace TowerDefenseGame.GameState
             NextWave();
         }
 
+
         private void NextWave()
         {
             var wave = GameManager.WaveManager;
             wave.StartWave(_waveDuration);
             wave.Wave++;
-            GameController.InCreaseDifficulty(_difficultyIncreasePerWave);
             AddSpawnRandomMonster(_spawnCount);
+            _currentDifficulty = GameController.DifficultPercent;
+            GameController.InCreaseDifficulty(_difficultyIncreasePerWave);
         }
 
         #endregion
