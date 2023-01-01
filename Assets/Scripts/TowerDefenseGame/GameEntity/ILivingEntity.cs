@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace TowerDefenseGame.GameEntity
 {
@@ -16,13 +17,15 @@ namespace TowerDefenseGame.GameEntity
 
     public class LivingEntity : DamageAble, ILivingEntity
     {
+        public UnityEvent<float> onSpeedChanged;
+
         private const float ReachedDist = 0.05f;
-        private const float SpeedMultiplier = 0.5f;
         private const float RandomSpawnRange = 0.45f;
 
         [SerializeField] private float initSpeed;
-        private float _baseSpeed;
+
         private float _speed;
+        private float _maxSpeed;
 
         private Vector3[] _path;
         private int _pathIndex;
@@ -36,27 +39,28 @@ namespace TowerDefenseGame.GameEntity
 
         public float GetSpeed()
         {
-            return _speed * SpeedMultiplier;
+            return _speed;
         }
 
         public float GetMaxSpeed()
         {
-            return _baseSpeed;
+            return _maxSpeed;
         }
 
         public void SetMaxSpeed(float speed)
         {
-            _baseSpeed = speed;
+            _maxSpeed = speed;
         }
 
         public void SetSpeed(float value)
         {
             _speed = value;
+            onSpeedChanged?.Invoke(value);
         }
 
         public void ResetSpeed()
         {
-            _baseSpeed = initSpeed;
+            _maxSpeed = initSpeed;
             _speed = initSpeed;
         }
 

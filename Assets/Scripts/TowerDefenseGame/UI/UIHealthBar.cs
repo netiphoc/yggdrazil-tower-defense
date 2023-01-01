@@ -21,25 +21,26 @@ namespace TowerDefenseGame.UI
 
         private void OnEnable()
         {
-            damageAble.onEntityDamaged.AddListener(OnEntityDamaged);
+            damageAble.onHealthChanged.AddListener(OnHealthChanged);
+
             SetHealth(damageAble.GetHealth(), damageAble.GetMaxHealth());
         }
 
         private void OnDisable()
         {
-            damageAble.onEntityDamaged.RemoveListener(OnEntityDamaged);
+            damageAble.onHealthChanged.RemoveListener(OnHealthChanged);
         }
 
-        private void OnEntityDamaged(DamageAble damageable, float damage)
+        private void OnHealthChanged(float health, float maxHealth)
         {
-            SetHealth(damageAble.GetHealth(), damageAble.GetMaxHealth());
+            SetHealth(health, maxHealth);
         }
 
         private void SetHealth(float health, float maxHealth)
         {
             var healthScale = health / maxHealth;
             healthBarImage.fillAmount = healthScale;
-            healthText.SetText($"{health:F0}/{maxHealth:F0}");
+            healthText.SetText($"{health:F}/{maxHealth:F}");
         }
     }
 }

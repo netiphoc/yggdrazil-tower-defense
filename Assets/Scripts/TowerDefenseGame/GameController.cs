@@ -15,6 +15,7 @@ namespace TowerDefenseGame
         }
 
         public UnityEvent<GameStateType> onGameStateChanged;
+        public UnityEvent<float> onGameDifficultyChanged;
 
         private GameStateType _currentGameState;
 
@@ -38,7 +39,18 @@ namespace TowerDefenseGame
         [SerializeField] private float difficultyIncreasePerWave = 0.5f;
 
         public GameManager GameManager => gameManager;
-        public float DifficultPercent { get; private set; }
+
+        private float _difficultPercent;
+
+        public float DifficultPercent
+        {
+            get => _difficultPercent;
+            private set
+            {
+                _difficultPercent = value;
+                onGameDifficultyChanged?.Invoke(value);
+            }
+        }
 
         private State _gameState;
 
@@ -91,9 +103,9 @@ namespace TowerDefenseGame
 
         #endregion
 
-        public void InCreaseDifficulty(float percent)
+        public void SetDifficulty(float newDifficulty)
         {
-            DifficultPercent += percent;
+            DifficultPercent = newDifficulty;
         }
 
         public void ResetDifficulty()

@@ -10,10 +10,10 @@ namespace TowerDefenseGame.GameState
         private readonly float _waveDuration;
         private readonly float _difficultyIncreasePerWave;
         private readonly float _spawnDelay;
-        private float _monsterToSpawn;
 
+        private int _monsterToSpawn;
         private float _currentSpawnDelay;
-        private float _currentDifficulty;
+        private float _difficultyToAdd;
 
         public InGameState(GameController gameController, int spawnCount, float waveDuration, float spawnDelay,
             float difficultyIncreasePerWave) : base(gameController)
@@ -27,8 +27,8 @@ namespace TowerDefenseGame.GameState
         public override void OnEnter()
         {
             base.OnEnter();
-            NextWave();
             GameController.ResetDifficulty();
+            NextWave();
         }
 
         public override void OnUpdate()
@@ -100,11 +100,12 @@ namespace TowerDefenseGame.GameState
         /// <param name="monster"></param>
         private void ModifyDifficultySpeed(Monster monster)
         {
-            monster.SetMaxSpeed(monster.GetSpeed());
-            var increaseSpeed = monster.GetSpeed() * _currentDifficulty;
-            var modifiedSpeed = monster.GetSpeed() + increaseSpeed;
-            monster.SetSpeed(modifiedSpeed);
-            this.Log("ModifyDifficultySpeed");
+            var increaseSpeed = monster.GetSpeed() * GameController.DifficultPercent;
+            var newMaxSpeed = monster.GetSpeed() + increaseSpeed;
+            this.Log(
+                $"{monster.GetEntityType()} ModifyDifficultySpeed: {monster.GetMaxSpeed()} -> {newMaxSpeed} +{increaseSpeed}");
+            monster.SetMaxSpeed(newMaxSpeed);
+            monster.SetSpeed(monster.GetMaxSpeed());
         }
 
         /// <summary>
@@ -113,11 +114,12 @@ namespace TowerDefenseGame.GameState
         /// <param name="monster"></param>
         private void ModifyDifficultyHealth(Monster monster)
         {
-            monster.SetMaxHealth(monster.GetHealth());
-            var increaseHealth = monster.GetHealth() * _currentDifficulty;
-            var modifiedHealth = monster.GetHealth() + increaseHealth;
-            monster.SetHealth(modifiedHealth);
-            this.Log("ModifyDifficultyHealth");
+            var increaseHealth = monster.GetHealth() * GameController.DifficultPercent;
+            var newMaxHealth = monster.GetHealth() + increaseHealth;
+            this.Log(
+                $"{monster.GetEntityType()} ModifyDifficultyHealth: {monster.GetMaxHealth()}->{newMaxHealth} +{increaseHealth}");
+            monster.SetMaxHealth(newMaxHealth);
+            monster.SetHealth(monster.GetMaxHealth());
         }
 
         #endregion
@@ -151,9 +153,20 @@ namespace TowerDefenseGame.GameState
             var wave = GameManager.WaveManager;
             wave.StartWave(_waveDuration);
             wave.Wave++;
+
             AddSpawnRandomMonster(_spawnCount);
-            _currentDifficulty = GameController.DifficultPercent;
-            GameController.InCreaseDifficulty(_difficultyIncreasePerWave);
+            IncreaseDifficultyPerWave();
+        }
+
+        private void IncreaseDifficultyPerWave()
+        {
+            if (_difficultyToAdd > 0f)
+            {
+                GameController.SetDifficulty(GameController.DifficultPercent + _difficultyToAdd);
+                _difficultyToAdd = 0f;
+            }
+
+            _difficultyToAdd = _difficultyIncreasePerWave;
         }
 
         #endregion
