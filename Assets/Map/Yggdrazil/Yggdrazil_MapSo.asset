@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e72e54a37c4e9cb6e2abdac41fe090, type: 3}
   m_Name: Yggdrazil_MapSo
   m_EditorClassIdentifier: 
-  mapConfigSo: {fileID: 11400000, guid: 9af28085f56576445906fd83676a43f1, type: 2}
+  mapConfigSo: {fileID: 11400000, guid: 57482570242a22b429e9afdb6cd4e817, type: 2}
   defaultBlock: {fileID: 8591816695035728929, guid: ae56298be022e1643ba0d8416376a3d4,
     type: 3}
   blockPrefabs:

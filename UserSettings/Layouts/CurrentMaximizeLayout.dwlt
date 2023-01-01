@@ -307,7 +307,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       floating: 0
       collapsed: 0
-      displayed: 0
+      displayed: 1
       snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
@@ -521,9 +521,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -62.463333, y: 554.13837, z: -0.80066645}
+    m_Target: {x: 4.5, y: 4.5, z: -2}
     speed: 2
-    m_Value: {x: -62.463333, y: 554.13837, z: -0.80066645}
+    m_Value: {x: 4.5, y: 4.5, z: -2}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -573,9 +573,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 207.41533
+    m_Target: 12.124355
     speed: 2
-    m_Value: 207.41533
+    m_Value: 12.124355
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -923,8 +923,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 946d0000
-    m_LastClickedInstanceID: 28052
+    m_SelectedInstanceIDs: f67c0000
+    m_LastClickedInstanceID: 31990
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
@@ -1237,7 +1237,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 2587
+  controlID: 4129
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1301,9 +1301,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 946d0000
-      m_LastClickedID: 28052
-      m_ExpandedIDs: 5437bfff3eaec7ff52c5e8ff80e7ffff2afbffff5e6d0000646d0000b26d0000c86d0000
+      m_SelectedIDs: f67c0000
+      m_LastClickedID: 31990
+      m_ExpandedIDs: 5437bfff3eaec7ff52c5e8ff4892f6ff80e7ffff2afbffff5e6d0000646d0000b26d0000c86d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1401,23 +1401,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Entities/Tower
+    - Assets/Map/Yggdrazil
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Entities/Tower
+  - Assets/Map/Yggdrazil
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\jayja\Desktop\Git Unity Projects\yggdrazil-tower-defense
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 58740000
-    m_LastClickedID: 29784
-    m_ExpandedIDs: 000000009c7300004274000000ca9a3b
+    m_SelectedIDs: 5a7d0000
+    m_LastClickedID: 32090
+    m_ExpandedIDs: 000000009c7300004674000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1470,8 +1470,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 946d0000
-    m_LastClickedInstanceID: 28052
+    m_SelectedInstanceIDs: f67c0000
+    m_LastClickedInstanceID: 31990
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000000000008e7b0200a64d0000
     m_RenameOverlay:

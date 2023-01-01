@@ -29,6 +29,7 @@ namespace TowerDefenseGame.Visual
         private void OnDisable()
         {
             towerB.onExplodeArea.RemoveListener(OnExplodeArea);
+            HideExplode();
         }
 
         private void OnExplodeArea(Block[] blocks)
