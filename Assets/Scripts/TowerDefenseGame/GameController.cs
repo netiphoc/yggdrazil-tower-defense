@@ -36,9 +36,12 @@ namespace TowerDefenseGame
 
         [SerializeField] private float waveDuration = 60f;
         [SerializeField] private float enemySpawnDelay = 1f;
-        [SerializeField] private float difficultyIncreasePerWave = 0.5f;
+
+        [SerializeField, Tooltip("In percent %"), Range(0, 100f)]
+        private float difficultyIncreasePerWave = 0.5f;
 
         public GameManager GameManager => gameManager;
+        private State _gameState;
 
         private float _difficultPercent;
 
@@ -52,11 +55,10 @@ namespace TowerDefenseGame
             }
         }
 
-        private State _gameState;
-
         private void Awake()
         {
             gameManager.DebugAssert();
+            ConvertDifficultyInPercent();
         }
 
         private void Start()
@@ -103,6 +105,13 @@ namespace TowerDefenseGame
 
         #endregion
 
+        #region Game Difficcultiy
+
+        private void ConvertDifficultyInPercent()
+        {
+            difficultyIncreasePerWave *= 0.01f;
+        }
+
         public void SetDifficulty(float newDifficulty)
         {
             DifficultPercent = newDifficulty;
@@ -112,5 +121,7 @@ namespace TowerDefenseGame
         {
             DifficultPercent = 0f;
         }
+
+        #endregion
     }
 }

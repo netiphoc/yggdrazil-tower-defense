@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 258538371}
   - component: {fileID: 258538372}
   m_Layer: 5
-  m_Name: GameTimer
+  m_Name: UIGameTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -981,10 +981,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   gameManager: {fileID: 1896572747}
-  enemyPerSpawn: 3
-  waveDuration: 10
+  enemyPerSpawn: 10
+  waveDuration: 60
   enemySpawnDelay: 1
-  difficultyIncreasePerWave: 0.005
+  difficultyIncreasePerWave: 0.5
 --- !u!1 &1225162455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,7 +1835,7 @@ GameObject:
   - component: {fileID: 1825012682}
   - component: {fileID: 1825012683}
   m_Layer: 5
-  m_Name: GameWave
+  m_Name: UIGameWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2354,7 +2354,7 @@ PrefabInstance:
     - target: {fileID: 8108737934068974339, guid: 3e691741e2430444389ad30c7ab2cfa9,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -13.074524
+      value: -13.074463
       objectReference: {fileID: 0}
     - target: {fileID: 8108737934068974339, guid: 3e691741e2430444389ad30c7ab2cfa9,
         type: 3}
