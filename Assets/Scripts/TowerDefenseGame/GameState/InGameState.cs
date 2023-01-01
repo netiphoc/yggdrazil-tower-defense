@@ -87,7 +87,8 @@ namespace TowerDefenseGame.GameState
 
         private void SpawnRandomMonster()
         {
-            var waypointPath = GameManager.WaypointManager.WaypointPaths[0];
+            var randomPathIndex = Random.Range(0, GameManager.WaypointManager.WaypointPaths.Length);
+            var waypointPath = GameManager.WaypointManager.WaypointPaths[randomPathIndex];
             var monster = GameManager.MonsterSpawner.SpawnRandomMonster();
             monster.SetPath(waypointPath.path);
             ModifyDifficultySpeed(monster);
@@ -146,7 +147,6 @@ namespace TowerDefenseGame.GameState
             if (!wave.WaveTimer.IsCountdownOver) return;
             NextWave();
         }
-
 
         private void NextWave()
         {
