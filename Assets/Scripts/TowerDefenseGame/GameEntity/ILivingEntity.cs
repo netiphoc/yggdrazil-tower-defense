@@ -5,8 +5,8 @@ namespace TowerDefenseGame.GameEntity
     public interface ILivingEntity : IDamageAble
     {
         float GetSpeed();
-        float GetBaseSpeed();
-        void SetBaseSpeed(float value);
+        float GetMaxSpeed();
+        void SetMaxSpeed(float value);
         void SetSpeed(float value);
         void ResetSpeed();
         void SetPath(Vector3[] path);
@@ -28,7 +28,6 @@ namespace TowerDefenseGame.GameEntity
         private int _pathIndex;
         private Vector3 _offset;
 
-
         protected override void Awake()
         {
             base.Awake();
@@ -40,12 +39,12 @@ namespace TowerDefenseGame.GameEntity
             return _speed * SpeedMultiplier;
         }
 
-        public float GetBaseSpeed()
+        public float GetMaxSpeed()
         {
             return _baseSpeed;
         }
 
-        public void SetBaseSpeed(float speed)
+        public void SetMaxSpeed(float speed)
         {
             _baseSpeed = speed;
         }

@@ -90,7 +90,6 @@ namespace TowerDefenseGame.GameState
             var waypointPath = GameManager.WaypointManager.WaypointPaths[0];
             var monster = GameManager.MonsterSpawner.SpawnRandomMonster();
             monster.SetPath(waypointPath.path);
-            monster.SetBaseSpeed(monster.GetSpeed());
             ModifyDifficultySpeed(monster);
             ModifyDifficultyHealth(monster);
         }
@@ -101,6 +100,7 @@ namespace TowerDefenseGame.GameState
         /// <param name="monster"></param>
         private void ModifyDifficultySpeed(Monster monster)
         {
+            monster.SetMaxSpeed(monster.GetSpeed());
             var increaseSpeed = monster.GetSpeed() * _currentDifficulty;
             var modifiedSpeed = monster.GetSpeed() + increaseSpeed;
             monster.SetSpeed(modifiedSpeed);
@@ -113,6 +113,7 @@ namespace TowerDefenseGame.GameState
         /// <param name="monster"></param>
         private void ModifyDifficultyHealth(Monster monster)
         {
+            monster.SetMaxHealth(monster.GetHealth());
             var increaseHealth = monster.GetHealth() * _currentDifficulty;
             var modifiedHealth = monster.GetHealth() + increaseHealth;
             monster.SetHealth(modifiedHealth);

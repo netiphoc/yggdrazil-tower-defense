@@ -33,7 +33,7 @@ namespace TowerDefenseGame.GameEntity
 
         private void SlowTarget(Monster monster)
         {
-            var baseSpeed = monster.GetBaseSpeed();
+            var baseSpeed = monster.GetMaxSpeed();
             var decreaseSpeed = baseSpeed * enemySpeedDecrease;
             var modifiedSpeed = baseSpeed - decreaseSpeed;
             monster.SetSpeed(modifiedSpeed);
